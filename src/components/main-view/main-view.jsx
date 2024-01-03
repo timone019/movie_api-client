@@ -1,40 +1,62 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 
 export const MainView = () => {
-  const [movies, setMovies] = useState([
-    {
-      id: 1,
-      title: "Terminator 2: Judgement Day",
-      description: "A cyborg, identical to the one who failed to kill Sarah Connor, must now protect her ten year old son John from an even more advanced and powerful cyborg.",
-      image: "https://m.media-amazon.com/images/W/MEDIAX_792452-T1/images/I/71kUIPJEafS._SL1500_.jpg",
-      director: "James Cameron",
-      genre: "Action"
-    },
-    {
-      id: 2,
-      title: "Transformers",
-      "Description": "An ancient struggle between two Cybertronian races, the heroic Autobots and the evil Decepticons, comes to Earth, with a clue to the ultimate power held by a teenager.",
-      image: "https://m.media-amazon.com/images/W/MEDIAX_792452-T1/images/I/A1Lw6vNC9DL._SL1500_.jpg",
-      director: "Michael Bay",
-      genre: "Action"
-    },
-    {
-      id: 3,
-      title: "Black Panther: Wakanda Forever",
-      "Description": "The people of Wakanda fight to protect their home from intervening world powers as they mourn the death of King T'Challa.",
-      image: "https://m.media-amazon.com/images/W/MEDIAX_792452-T1/images/I/81nKA1flatL._SL1500_.jpg",
-      director: "Ryan Coogler",
-      genre: "Action"
-    }
-  ]);
+  const [movies, setMovies] = useState([]);
 
-  const [selectedMovie, setSelectedMovie] = useState(null);
+
+
+  useEffect(() => {
+    fetch("https://mymovies-8b73c95d0ae4.herokuapp.com/movies")
+    .then((response) => response.json())
+    .then((movies) => { 
+      const moviesFromApi = movies.map((movie) => {
+        return {
+          _id: movie._id,
+          Title: movie.Title,
+          Description: movie.Description,
+          Genre: {
+            Name: movie.Genre.Name,
+            Description: movie.Description
+          },
+          Director: {
+            Name: movie.Director.Name,
+            Bio: movie.Director.Bio,
+            Birth: movie.Director.Birth
+          },
+        };  
+    });
+
+    setMovies(moviesFromApi);
+  });
+}, []);
+
+const [selectedMovie, setSelectedMovie] = useState(null);
 
   if (selectedMovie) {
+    
+    let similarMovies = movies.filter(
+      (movie) => movie.Genre.Name === selectedMovie.Genre.Name
+    );
+    similarMovies = similarMovies.filter(
+      (movie) => movie.Title !== selectedMovie.Title
+    );
     return (
+      <>
       <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
+    <hr />
+    <h2>Similar movies</h2>
+      {similarMovies.map((movie) => (
+        <MovieCard
+          key={movie._id}
+          movie={movie}
+          onMovieClick={(newSelectedMovie) => {
+            setSelectedMovie(newSelectedMovie);
+          }}
+        />
+      ))}
+    </>
     );
   }
 
@@ -53,7 +75,7 @@ export const MainView = () => {
       </button>
       {movies.map((movie) => (
         <MovieCard
-          key={movie.id}
+          key={movie._id}
           movie={movie}
           onMovieClick={(newSelectedMovie) => {
             setSelectedMovie(newSelectedMovie);
