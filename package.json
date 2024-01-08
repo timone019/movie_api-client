@@ -17,17 +17,16 @@
   },
   "homepage": "https://github.com/timone019/movie_api-client#readme",
   "dependencies": {
-    "-": "^0.0.1",
-    "g": "^2.0.1",
-    "got": "^14.0.0",
     "package.json": "^0.0.0",
     "parcel": "^2.10.3",
-    "pkg.json": "^2.0.8",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-scripts": "^5.0.1"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.10.3",
+    "parcel-bundler": "^1.12.5",
     "process": "^0.11.10"
   }
 }
