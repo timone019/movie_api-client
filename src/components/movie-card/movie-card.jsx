@@ -6,7 +6,7 @@ export const MovieCard = ({ movie, onMovieClick }) => {
           onMovieClick(movie);
         }}
       >
-        {movie.title}
+        {movie.Title}
       </div>
     );
   };
