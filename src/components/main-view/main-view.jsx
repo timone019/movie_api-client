@@ -1,8 +1,11 @@
+import './main-view.scss';
 import { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -12,50 +15,37 @@ export const MainView = () => {
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
 
-  if (!user) {
-    return (
-        <>
-        <LoginView 
-        onLoggedIn={(user, token) => { 
-            setUser(user); 
-            setToken(token); 
-            }} 
-            />
-            or
-            <SignupView />
-            </>
-    );
-}
-
-useEffect(() => {
-  if (!token) {
+  useEffect(() => {
+    if (!token) {
       return;
-  }
+    }
 
-  fetch("https://mymovies-8b73c95d0ae4.herokuapp.com/movies", {
+    fetch("https://mymovies-8b73c95d0ae4.herokuapp.com/movies", {
       headers: { Authorization: `Bearer ${token}` },
-  })
-  .then((response) => response.json())
-  .then((movies) => {
-      const moviesFromApi = movies.map((movie) => ({
-          _id: movie._id,
-          Title: movie.Title,
-          Description: movie.Description,
-          Genre: { 
-              Name: movie.Genre.Name, 
+    })
+      .then((response) => response.json())
+      .then((movies) => {
+        const moviesFromApi = movies.map((movie) => {
+          return {
+            _id: movie._id,
+            Title: movie.Title,
+            Description: movie.Description,
+            Genre: {
+              Name: movie.Genre.Name,
               Description: movie.Genre,
-          },
-          Director: { 
-              Name: movie.Director.Name, 
-              Bio: movie.Director.Bio, 
+            },
+            Director: {
+              Name: movie.Director.Name,
+              Bio: movie.Director.Bio,
               Birth: movie.Director.Birth,
-          },
-          // ImagePath: movie.ImagePath,
-          Featured: movie.Featured
-      }));
+            },
+            ImagePath: movie.ImagePath,
+            Featured: movie.Featured,
+          };
+        });
 
-      setMovies(moviesFromApi);
-  });
+        setMovies(moviesFromApi);
+      });
   }, [token]);
 
   if (selectedMovie) {
@@ -86,36 +76,58 @@ useEffect(() => {
     );
   }
 
-  if (movies.length === 0) {
-    return <div>The list is empty!</div>;
-  }
-
   return (
-    <div>
-      <button
+      <Row className="justify-content-md-center">
+        {!user ? (
+          <>
+            <Col md={5}>
+              <LoginView
+                onLoggedIn={(user, token) => {
+                  setUser(user);
+                  setToken(token);
+                }}
+              />
+              or
+              <SignupView />
+            </Col>
+          </>
+        ) : selectedMovie ? (
+          <Col md={8} style={{ border: "1px solid black" }}>
+            <MovieView
+              style={{ border: "1px solid green" }}
+              movie={selectedMovie}
+              onBackClick={() => setSelectedMovie(null)}
+            />
+          </Col>
+        ) : movies.length === 0 ? (
+          <div>The list is empty!</div>
+        ) : (
+          <>
+            {movies.map((movie) => (
+              <Col className="mb-5" key={movie._id} md={3}>
+                <MovieCard
+                  movie={movie}
+                  onMovieClick={(newSelectedMovie) => {
+                    setSelectedMovie(newSelectedMovie);
+                  }}
+                />
+              </Col>
+            ))}
+          </>
+        )}
+             {user && (
+              <button
         onClick={() => {
-          alert("Sweet!");
+          setUser(null);
+          setToken(null);
         }}
+        className="logout-button"
+        style={{ cursor: "pointer" }}
       >
-        Click me!
+        Log Out
       </button>
-      {movies.map((movie) => (
-        <MovieCard
-          key={movie._id}
-          movie={movie}
-          onMovieClick={(newSelectedMovie) => {
-            setSelectedMovie(newSelectedMovie);
-          }}
-        />
-      ))}
-        <button 
-            onClick={() => {
-                setUser(null);
-                setToken(null);
-            }}
-            >
-                Log out
-                </button>
-    </div>
+             )}
+      </Row> 
   );
 };
+
