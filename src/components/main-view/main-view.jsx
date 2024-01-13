@@ -1,4 +1,4 @@
-import './main-view.scss';
+import "./main-view.scss";
 import { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
@@ -121,7 +121,7 @@ export const MainView = () => {
           setUser(null);
           setToken(null);
         }}
-        className="logout-button"
+        className="logout-button mb-3"
         style={{ cursor: "pointer" }}
       >
         Log Out

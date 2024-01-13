@@ -27351,7 +27351,7 @@ const MainView = ()=>{
                     setUser(null);
                     setToken(null);
                 },
-                className: "logout-button",
+                className: "logout-button mb-3",
                 style: {
                     cursor: "pointer"
                 },
@@ -30985,10 +30985,17 @@ const LoginView = ({ onLoggedIn })=>{
                 lineNumber: 56,
                 columnNumber: 7
             }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
-                variant: "primary",
-                type: "submit",
-                children: "Log In"
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
+                    className: "login-button mt-3",
+                    variant: "primary",
+                    type: "submit",
+                    children: "Log In"
+                }, void 0, false, {
+                    fileName: "src/components/login-view/login-view.jsx",
+                    lineNumber: 68,
+                    columnNumber: 7
+                }, undefined)
             }, void 0, false, {
                 fileName: "src/components/login-view/login-view.jsx",
                 lineNumber: 67,
@@ -31196,10 +31203,17 @@ const SignupView = ()=>{
                 lineNumber: 97,
                 columnNumber: 7
             }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
-                variant: "primary",
-                type: "submit",
-                children: "Sign Up"
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
+                    className: "signup-button mt-3",
+                    variant: "primary",
+                    type: "submit",
+                    children: "Sign Up"
+                }, void 0, false, {
+                    fileName: "src/components/signup-view/signup-view.jsx",
+                    lineNumber: 109,
+                    columnNumber: 7
+                }, undefined)
             }, void 0, false, {
                 fileName: "src/components/signup-view/signup-view.jsx",
                 lineNumber: 108,
