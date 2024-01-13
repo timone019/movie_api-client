@@ -6,6 +6,7 @@ import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+// import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -75,7 +76,7 @@ export const MainView = () => {
       </>
     );
   }
-
+  
   return (
       <Row className="justify-content-md-center">
         {!user ? (

@@ -7,8 +7,9 @@ export const MovieCard = ({ movie, onMovieClick }) => {
       <Card className="h-100">
       <Card.Img variant="top" src={movie.ImagePath} />
       <Card.Body>
-        <Card.Title>{movie.Title}</Card.Title>
-        <div>
+      <Card.Title>{movie.Title}</Card.Title>
+      </Card.Body>
+        <Card.Footer>
         <Button
         onClick={() => onMovieClick(movie)}
         className="open-button"
@@ -17,8 +18,7 @@ export const MovieCard = ({ movie, onMovieClick }) => {
       >
         Open
         </Button>
-        </div>
-        </Card.Body>
+        </Card.Footer>
       </Card>
     );
   };
