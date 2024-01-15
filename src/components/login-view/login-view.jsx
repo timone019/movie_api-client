@@ -26,8 +26,8 @@ export const LoginView = ({ onLoggedIn }) => {
       .then((data) => {
         console.log("Login response: ", data);
         if (data.user) {
-            localStorage.setItem("user", JSON.stringify(data.user));
-            localStorage.setItem("token", data.token);
+          localStorage.setItem("user", JSON.stringify(data.user));
+          localStorage.setItem("token", data.token);
           onLoggedIn(data.user, data.token);
         } else {
           alert("No such user");
@@ -42,9 +42,7 @@ export const LoginView = ({ onLoggedIn }) => {
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group controlId="formUsername">
-      <Form.Label>
-        Username:
-        </Form.Label>
+        <Form.Label>Username:</Form.Label>
         <Form.Control
           type="text"
           value={username}
@@ -55,9 +53,7 @@ export const LoginView = ({ onLoggedIn }) => {
       </Form.Group>
 
       <Form.Group controlId="formPassword">
-      <Form.Label>
-        Password:
-        </Form.Label>
+        <Form.Label>Password:</Form.Label>
         <Form.Control
           type="password"
           value={password}
@@ -67,7 +63,9 @@ export const LoginView = ({ onLoggedIn }) => {
         />
       </Form.Group>
       <div>
-      <Button className="login-button mt-3" variant="primary" type="submit">Log In</Button>
+        <Button className="login-button mt-3" variant="primary" type="submit">
+          Log In
+        </Button>
       </div>
     </Form>
   );

@@ -39,23 +39,18 @@ export const SignupView = () => {
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group controlId="signupformFullName">
-        <Form.Label>
-        Full Name:
-        </Form.Label>
+        <Form.Label>Full Name:</Form.Label>
         <Form.Control
           type="text"
           value={fullName}
           placeholder="First & Last Name"
           onChange={(e) => setFullName(e.target.value)}
           required
-
-          />
+        />
       </Form.Group>
 
-<Form.Group controlId="signupformUsername">
-      <Form.Label>
-        Username:
-        </Form.Label>
+      <Form.Group controlId="signupformUsername">
+        <Form.Label>Username:</Form.Label>
         <Form.Control
           type="text"
           value={username}
@@ -65,14 +60,11 @@ export const SignupView = () => {
           title="Username can only contain letters and numbers"
           onChange={(e) => setUsername(e.target.value)}
           required
-          
         />
       </Form.Group>
 
       <Form.Group controlId="signupformPassword">
-      <Form.Label>
-        Password:
-        </Form.Label>
+        <Form.Label>Password:</Form.Label>
         <Form.Control
           type="password"
           value={password}
@@ -86,9 +78,7 @@ export const SignupView = () => {
       </Form.Group>
 
       <Form.Group controlId="signupformEmail">
-      <Form.Label>
-        Email:
-        </Form.Label>
+        <Form.Label>Email:</Form.Label>
         <Form.Control
           type="email"
           value={email}
@@ -99,9 +89,7 @@ export const SignupView = () => {
       </Form.Group>
 
       <Form.Group controlId="signupformBirthday">
-      <Form.Label>
-        Birthday:
-        </Form.Label>
+        <Form.Label>Birthday:</Form.Label>
         <Form.Control
           type="date"
           value={birthday}
@@ -110,7 +98,9 @@ export const SignupView = () => {
         />
       </Form.Group>
       <div>
-      <Button className="signup-button mt-3" variant="primary" type="submit">Sign Up</Button>
+        <Button className="signup-button mt-3" variant="primary" type="submit">
+          Sign Up
+        </Button>
       </div>
     </Form>
   );
