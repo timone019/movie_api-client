@@ -48,6 +48,7 @@ export const LoginView = ({ onLoggedIn }) => {
         <Form.Control
           type="text"
           value={username}
+          placeholder="Enter username"
           onChange={(e) => setUsername(e.target.value)}
           required
         />
@@ -60,6 +61,7 @@ export const LoginView = ({ onLoggedIn }) => {
         <Form.Control
           type="password"
           value={password}
+          placeholder="Enter password"
           onChange={(e) => setPassword(e.target.value)}
           required
         />

@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
 export const SignupView = () => {
-  const [FullName, setFullName] = useState("");
+  const [fullName, setFullName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -13,7 +13,7 @@ export const SignupView = () => {
     event.preventDefault();
 
     const data = {
-      FullName: FullName,
+      FullName: fullName,
       Username: username,
       Password: password,
       Email: email,
@@ -44,7 +44,7 @@ export const SignupView = () => {
         </Form.Label>
         <Form.Control
           type="text"
-          value={FullName}
+          value={fullName}
           placeholder="First & Last Name"
           onChange={(e) => setFullName(e.target.value)}
           required
@@ -59,6 +59,7 @@ export const SignupView = () => {
         <Form.Control
           type="text"
           value={username}
+          placeholder="Create your Username"
           minLength="6"
           pattern="^[a-zA-Z0-9]+$"
           title="Username can only contain letters and numbers"
@@ -75,6 +76,7 @@ export const SignupView = () => {
         <Form.Control
           type="password"
           value={password}
+          placeholder="Create your Password"
           minLength="8"
           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}"
           title="Must contain at least one number and one uppercase and lowercase letter, and at least one special character."
@@ -90,6 +92,7 @@ export const SignupView = () => {
         <Form.Control
           type="email"
           value={email}
+          placeholder="Enter your Email"
           onChange={(e) => setEmail(e.target.value)}
           required
         />

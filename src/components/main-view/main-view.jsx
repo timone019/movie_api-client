@@ -13,7 +13,7 @@ export const MainView = () => {
   const storedToken = localStorage.getItem("token");
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
-  const [movies, setMovies] = useState([]);
+  const [moviedata, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   useEffect(() => {
@@ -25,8 +25,8 @@ export const MainView = () => {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((response) => response.json())
-      .then((movies) => {
-        const moviesFromApi = movies.map((movie) => {
+      .then((moviedata) => {
+        const moviesFromApi = moviedata.map((movie) => {
           return {
             _id: movie._id,
             Title: movie.Title,
@@ -50,7 +50,7 @@ export const MainView = () => {
   }, [token]);
 
   if (selectedMovie) {
-    let similarMovies = movies.filter(
+    let similarMovies = moviedata.filter(
       (movie) => movie.Genre.Name === selectedMovie.Genre.Name
     );
     similarMovies = similarMovies.filter(
@@ -100,11 +100,11 @@ export const MainView = () => {
               onBackClick={() => setSelectedMovie(null)}
             />
           </Col>
-        ) : movies.length === 0 ? (
+        ) : moviedata.length === 0 ? (
           <div>The list is empty!</div>
         ) : (
           <>
-            {movies.map((movie) => (
+            {moviedata.map((movie) => (
               <Col className="mb-5" key={movie._id} md={3}>
                 <MovieCard
                   movie={movie}
