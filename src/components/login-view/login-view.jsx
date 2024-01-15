@@ -1,6 +1,14 @@
 import { useState } from "react";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
+import Proptypes from "prop-types";
+import {
+  Form,
+  Button,
+  Card,
+  CardGroup,
+  Container,
+  Row,
+  Col,
+} from "react-bootstrap";
 
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
@@ -40,33 +48,54 @@ export const LoginView = ({ onLoggedIn }) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Group controlId="formUsername">
-        <Form.Label>Username:</Form.Label>
-        <Form.Control
-          type="text"
-          value={username}
-          placeholder="Enter username"
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-      </Form.Group>
+    <Container>
+      <Row>
+        <Col>
+          <CardGroup>
+            <Card>
+              <Card.Body>
+                <Form onSubmit={handleSubmit}>
+                  <Form.Group controlId="formUsername">
+                    <Form.Label>Username:</Form.Label>
+                    <Form.Control
+                      type="text"
+                      aria-label="username"
+                      aria-required="true"
+                      value={username}
+                      placeholder="Enter username"
+                      onChange={(e) => setUsername(e.target.value)}
+                      required
+                    />
+                  </Form.Group>
 
-      <Form.Group controlId="formPassword">
-        <Form.Label>Password:</Form.Label>
-        <Form.Control
-          type="password"
-          value={password}
-          placeholder="Enter password"
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </Form.Group>
-      <div>
-        <Button className="login-button mt-3" variant="primary" type="submit">
-          Log In
-        </Button>
-      </div>
-    </Form>
+                  <Form.Group controlId="formPassword">
+                    <Form.Label>Password:</Form.Label>
+                    <Form.Control
+                      type="password"
+                      aria-label="password"
+                      aria-required="true"
+                      value={password}
+                      placeholder="Enter password"
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                    />
+                  </Form.Group>
+
+                  <div>
+                    <Button
+                      className="login-button mt-3"
+                      variant="primary"
+                      type="submit"
+                    >
+                      Log In
+                    </Button>
+                  </div>
+                </Form>
+              </Card.Body>
+            </Card>
+          </CardGroup>
+        </Col>
+      </Row>
+    </Container>
   );
 };

@@ -4,8 +4,7 @@ import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import { Container, Row, Col, } from "react-bootstrap";
 // import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 
 export const MainView = () => {
@@ -64,7 +63,9 @@ export const MainView = () => {
         />
         <hr />
         <h2>Similar movies</h2>
+        <Row>
         {similarMovies.map((movie) => (
+          <Col md={3} key={movie._id}>
           <MovieCard
             key={movie._id}
             movie={movie}
@@ -72,12 +73,15 @@ export const MainView = () => {
               setSelectedMovie(newSelectedMovie);
             }}
           />
+        </Col>
         ))}
+        </Row>
       </>
     );
   }
 
   return (
+    <Container>
     <Row className="justify-content-md-center">
       {!user ? (
         <>
@@ -88,7 +92,7 @@ export const MainView = () => {
                 setToken(token);
               }}
             />
-            or
+            or Sign Up Below
             <SignupView />
           </Col>
         </>
@@ -117,17 +121,20 @@ export const MainView = () => {
         </>
       )}
       {user && (
-        <button
-          onClick={() => {
-            setUser(null);
-            setToken(null);
-          }}
-          className="logout-button mb-3"
-          style={{ cursor: "pointer" }}
-        >
-          Log Out
-        </button>
+        <div className="d-flex justify-content-center align-items-center">
+          <button
+            onClick={() => {
+              setUser(null);
+              setToken(null);
+            }}
+            className="logout-button mb-3"
+            style={{ cursor: "pointer" }}
+          >
+            Log Out
+          </button>
+        </div>
       )}
     </Row>
+    </Container>
   );
 };
