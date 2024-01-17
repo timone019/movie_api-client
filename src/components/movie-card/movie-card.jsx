@@ -1,8 +1,9 @@
 import "./movie-card.scss";
 import PropTypes from "prop-types";
-import { Button, Card } from "react-bootstrap";
+import { Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-export const MovieCard = ({ movie, onMovieClick }) => {
+export const MovieCard = ({ movie }) => {
   return (
     <Card className="h-100">
       <Card.Img variant="top" src={movie.ImagePath} />
@@ -10,13 +11,9 @@ export const MovieCard = ({ movie, onMovieClick }) => {
         <Card.Title>{movie.Title}</Card.Title>
       </Card.Body>
       <Card.Footer>
-        <Button
-          onClick={() => onMovieClick(movie)}
-          className="open-button"
-          style={{ cursor: "pointer" }}
-        >
-          Open
-        </Button>
+      <Link to={`/moviedata/${movie.Title}`} className="open-button">
+        Open 
+      </Link>
       </Card.Footer>
     </Card>
   );
@@ -27,8 +24,5 @@ MovieCard.propTypes = {
   movie: PropTypes.shape({
     _id: PropTypes.string.isRequired,
     Title: PropTypes.string.isRequired,
-    Description: PropTypes.string.isRequired,
-    ImagePath: PropTypes.string.isRequired,
   }).isRequired,
-  onMovieClick: PropTypes.func.isRequired,
 };

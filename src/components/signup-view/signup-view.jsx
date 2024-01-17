@@ -34,25 +34,23 @@ export const SignupView = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
     })
       .then((response) => {
-        if (response.ok) {
+        if (!response.ok) {
           throw new Error("HTTP error! status: ${response.status}");
         }
         return response.json();
       })
       .then((data) => {
         alert("Signup successful");
+        window.location.reload();
       })
       .catch((error) => {
-        if (error.message.includes("400")) {
-          alert("Bad request. Please check your input data");
-        } else if (error.message.includes("500")) {
-          alert("Server error. Please try again later");
-        } else {
-          alert("signup failed, please try again");
-        }
+        console.error(
+        "There was an error signing up. Please try again.",
+        error
+      );
+      alert("Signup failed. Please try again.")
       });
   };
 

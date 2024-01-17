@@ -1,9 +1,57 @@
 import "./movie-view.scss";
 import PropTypes from "prop-types";
+import { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
+import { Row, Col } from "react-bootstrap";
+import { MovieCard } from "../movie-card/movie-card";
+
 // import Card from "react-bootstrap/Card";
 
-export const MovieView = ({ movie, onBackClick }) => {
+export const MovieView = ({ token }) => {
+  const { title: urlTitle } = useParams();
+  const [title, setTitle] = useState(urlTitle); // [title, setTitle]
+  // const { title } = useParams();
+  const [movie, setMovie] = useState(null);
+  const [similarMovies, setSimilarMovies] = useState([]);
+
+  
+  // Fetch the movie data based on the movie title
+  useEffect(() => {
+    setTitle(urlTitle);
+  }, [urlTitle]);
+
+  useEffect(() => {
+    console.log('title', urlTitle);
+
+    fetch(`https://mymovies-8b73c95d0ae4.herokuapp.com/movies/${urlTitle}`, {
+      headers: { Authorization: `Bearer ${token}` },
+  })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('response', data);
+        setMovie(data);
+      
+        // Fetch all movies
+      fetch(`https://mymovies-8b73c95d0ae4.herokuapp.com/movies`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => response.json())
+      .then((allMovies) => {
+        // Filter movies that have the same genre as the current movie
+        const similarMovies = allMovies.filter(
+          (m) => m.Genre.Name === data.Genre.Name && m._id !== data._id);
+        console.log('similarMovies', similarMovies);
+        setSimilarMovies(similarMovies);  
+      });
+      });
+  }, [urlTitle, token]);
+
+  if (!movie) return null; 
+
   return (
+    <>
+         
+  
     <div style={{ textAlign: "center" }}>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <img
@@ -33,31 +81,25 @@ export const MovieView = ({ movie, onBackClick }) => {
           <span>{movie.Description}</span>
         </p>
       </div>
-
-      <button
-        onClick={onBackClick}
-        className="back-button mt-2"
-        style={{ cursor: "pointer" }}
-      >
-        Back
-      </button>
     </div>
+
+    <h2>Similar movies</h2>
+      <Row>
+        {similarMovies.map((movie) => (
+          <Col md={3} key={movie._id}>
+            <Link to={`/movies/${movie.Title}`}>
+              <MovieCard movie={movie} />
+            </Link>
+          </Col>
+        ))}
+      </Row>
+      <br />
+      <Link to={"/"} className="back-button">Back</Link>
+
+    </>
   );
 };
 
 MovieView.propTypes = {
-  movie: PropTypes.shape({
-    ImagePath: PropTypes.string.isRequired,
-    Title: PropTypes.string.isRequired,
-    Description: PropTypes.string.isRequired,
-    Director: PropTypes.shape({
-      Name: PropTypes.string.isRequired,
-      // include other properties of Director if there are any
-    }).isRequired,
-    Genre: PropTypes.shape({
-      Name: PropTypes.string.isRequired,
-      // include other properties of Genre if there are any
-    }).isRequired,
-  }).isRequired,
-  onBackClick: PropTypes.func.isRequired,
+ token: PropTypes.string.isRequired,
 };
