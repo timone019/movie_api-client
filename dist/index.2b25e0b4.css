@@ -13210,12 +13210,25 @@ textarea.form-control-lg {
   }
 }
 
+.card {
+  margin-top: 10px;
+}
+
 .open-button {
   color: #f5f5f5;
   background-color: #4169e1;
   border: none;
   border-radius: 4px;
   padding: 4px 12px;
+  text-decoration: none;
+}
+
+.w-100 {
+  margin-top: 10px;
+}
+
+.movie-card {
+  margin: 5px;
 }
 
 .back-button {
@@ -13224,6 +13237,7 @@ textarea.form-control-lg {
   border: none;
   border-radius: 4px;
   padding: 4px 12px;
+  text-decoration: none;
 }
 
 :root, [data-bs-theme="light"] {
