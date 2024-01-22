@@ -1,110 +1,109 @@
-import React, { useState, useEffect } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { useState } from "react";
+import { Form, Button } from "react-bootstrap";
 
-const UpdateUser = () => {
-  const [userData, setUserData] = useState({
-    username: {$:Username}, // Replace with the actual user ID
-    // name: '',
-    email: {$:Email},
-    // Add more fields as needed
+const UpdateUser = ({ user, setUser }) => {
+  const [updatedUser, setUpdatedUser] = useState({
+    Username: user.Username,
+    Password: user.Password,
+    Email: user.Email,
+    Birthday: user.Birthday,
   });
+  // const [username, setUsername] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [birthday, setBirthday] = useState("");
 
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    // Fetch user data from the server based on user ID
-    const fetchUserData = async () => {
-      try {
-        const response = await fetch(`https://mymovies-8b73c95d0ae4.herokuapp.com/users/${userData.id}`); // Replace with your actual API endpoint
-        const data = await response.json();
-        setUserData(data);
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-      }
-    };
-
-    fetchUserData();
-  }, [userData.id]); // Fetch data when the component mounts and whenever user ID changes
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setUserData({
-      userData,
-      [name]: value,
-    });
+  const handleUpdate = async (e) => {
+    setUpdatedUser({ ...updatedUser, [e.target.name]: e.target.value });
   };
 
-  const handleUpdateUser = async () => {
-    setLoading(true);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const token = localStorage.getItem("token");
 
     try {
-      const response = await fetch(`https://mymovies-8b73c95d0ae4.herokuapp.com/users/${userData.id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(userData),
-      });
+      const response = await fetch(
+        `https://mymovies-8b73c95d0ae4.herokuapp.com/users/${user.Username}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(updatedUser),
+        }
+      );
 
       if (response.ok) {
-        console.log('User updated successfully!');
-        // You may want to handle success, e.g., redirect or show a success message
+        const updatedUserData = await response.json();
+        setUser(updatedUserData);
+        console.log("User updated successfully:", updatedUserData);
+       
       } else {
-        console.error('Failed to update user:', response.status);
-        // Handle error, show an error message, etc.
+        console.error("Failed to update user:", response.statusText);
+       
       }
     } catch (error) {
-      console.error('Error updating user:', error);
-      // Handle error, show an error message, etc.
-    } finally {
-      setLoading(false);
+      console.error("Error updating user:", error.message);
+     
     }
   };
 
   return (
     <>
-      <h2>Update</h2>
-      <Form>
+      <h2>Update Profile Info</h2>
+      <Form onSubmit={handleSubmit}>
         <Form.Group>
           <Form.Label>Username:</Form.Label>
           <Form.Control
             type="text"
-            defaultValue={userData.name}
-            onChange={e => handleUpdate (e) }
-            required 
+            name="Username"
+            defaultValue={user.Username}
+            onChange={(e) => handleUpdate(e)}
+            required
             placeholder="Enter username"
           />
         </Form.Group>
 
         <Form.Group controlId="formPassword">
-          <Form.Label>Password</Form.Label>
+          <Form.Label>Password:</Form.Label>
           <Form.Control
             type="password"
             name="password"
-            defaultValue=''
-            onChange={ e => handleUpdate (e) }
+            defaultValue=""
+            onChange={(e) => handleUpdate(e)}
             required
             minLength="8"
             placeholder="Your password must be at least 8 characters or more"
-
           />
         </Form.Group>
 
         <Form.Group controlId="formEmail">
-          <Form.Label>Email</Form.Label>
+          <Form.Label>Email:</Form.Label>
           <Form.Control
             type="email"
-            defaultValue={userData.Email}
-            onChange={ e => handleUpdate (e) }
+            name="Email"
+            defaultValue={user.Email}
+            onChange={(e) => handleUpdate(e)}
             required
             placeholder="Enter email"
-
           />
         </Form.Group>
 
+        <Form.Group controlId="birthday">
+          <Form.Label>Birthday:</Form.Label>
+          <Form.Control
+            type="birthday"
+            name="Birthday"
+            placeholder="Enter your birthday"
+            defaultValue={user.Birthday}
+            onChange={(e) => setBirthday(e.target.value)}
+          />
+        </Form.Group>
 
-        <Button variant="primary" type="button" onClick={handleUpdateUser}>
-          Submit
+        <Button variant="primary" type="button" onClick={handleSubmit}>
+          Update
         </Button>
       </Form>
     </>

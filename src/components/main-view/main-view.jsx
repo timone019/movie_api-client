@@ -1,20 +1,14 @@
 import "./main-view.scss";
-import { useState, useEffect } from "react";
-import { MovieCard } from "../movie-card/movie-card";
-import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
-import { Container, Row, Col } from "react-bootstrap";
-import {
-  BrowserRouter,
-  Navigate,
-  Route,
-  Routes,
-  useParams,
-  Link,
-} from "react-router-dom";
-import { NavigationBar } from "../navigation-bar/navigation-bar";
+import { MovieCard } from "../movie-card/movie-card";
+import { MovieView } from "../movie-view/movie-view";
 import { ProfileView } from "../profile-view/profile-view";
+import { useState, useEffect } from "react";
+import { Container, Row, Col } from "react-bootstrap";
+import { BrowserRouter,Route,Routes,} from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
+import { NavigationBar } from "../navigation-bar/navigation-bar";
 // import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 
 export const MainView = () => {
@@ -155,8 +149,11 @@ export const MainView = () => {
               path= "/profile" 
               element={
               <ProfileView  
-              user={user} /> } 
-              />
+              user={user} 
+              setUser={setUser} 
+              moviedata={moviedata} /> 
+              } 
+            />
                  
           </Routes>
         </Row> 
