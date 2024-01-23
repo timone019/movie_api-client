@@ -21,7 +21,6 @@ const UpdateUser = ({ user, setUser }) => {
     e.preventDefault();
 
     const token = localStorage.getItem("token");
-
     try {
       const response = await fetch(
         `https://mymovies-8b73c95d0ae4.herokuapp.com/users/${user.Username}`,
@@ -52,7 +51,7 @@ const UpdateUser = ({ user, setUser }) => {
 
   return (
     <>
-      <h2>Update Profile Info</h2>
+      <h2>Update User Info</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group>
           <Form.Label>Username:</Form.Label>
@@ -70,7 +69,7 @@ const UpdateUser = ({ user, setUser }) => {
           <Form.Label>Password:</Form.Label>
           <Form.Control
             type="password"
-            name="password"
+            name="Password"
             defaultValue=""
             onChange={(e) => handleUpdate(e)}
             required
@@ -94,15 +93,16 @@ const UpdateUser = ({ user, setUser }) => {
         <Form.Group controlId="birthday">
           <Form.Label>Birthday:</Form.Label>
           <Form.Control
-            type="birthday"
+            type="date"
             name="Birthday"
             placeholder="Enter your birthday"
             defaultValue={user.Birthday}
-            onChange={(e) => setBirthday(e.target.value)}
+            onChange={(e) => handleUpdate(e)}
           />
         </Form.Group>
 
-        <Button variant="primary" type="button" onClick={handleSubmit}>
+        <br />
+        <Button variant="primary" type="submit">
           Update
         </Button>
       </Form>

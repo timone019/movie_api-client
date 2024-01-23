@@ -17,6 +17,36 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [moviedata, setMovies] = useState([]);
+  const { title } = useParams();
+
+  const [favMovies, setFavMovies] = useState([]); // Initialize state for favorite movies
+  const addFav = (movieId) => {
+    setFavMovies((prevFavMovies) => [...prevFavMovies, movieId]);
+  
+    fetch(`https://mymovies-8b73c95d0ae4.herokuapp.com/users/${user.Username}/movies/${movieId}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    }
+  })
+  .catch(error => console.error('Error:', error));
+};
+  
+  const removeFav = (movieId) => {
+    setFavMovies((prevFavMovies) =>
+      prevFavMovies.filter((id) => id !== movieId)
+    );
+  
+    fetch(`https://mymovies-8b73c95d0ae4.herokuapp.com/users/${user.Username}/movies/${movieId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      }
+    })
+    .catch(error => console.error('Error:', error));
+  };
 
   useEffect(() => {
     if (!token) {
@@ -117,7 +147,7 @@ export const MainView = () => {
                       <MovieView
                         token={token}
                         moviedata={moviedata.find(
-                          (movie) => movie.Title === useParams().title
+                          (movie) => movie.Title === title
                         )}
                       />
                     </Col>
@@ -137,7 +167,12 @@ export const MainView = () => {
                     <>
                       {moviedata.map((movie) => (
                         <Col className="mb-4" key={movie._id} md={3}>
-                          <MovieCard movie={movie} />
+                          <MovieCard 
+                          movie={movie}
+                          isFav={favMovies.includes(movie._id)}
+                          addFav={addFav}
+                          removeFav={removeFav}   
+                          />
                         </Col>
                       ))}
                     </>
