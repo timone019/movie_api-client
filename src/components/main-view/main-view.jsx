@@ -6,7 +6,7 @@ import { MovieView } from "../movie-view/movie-view";
 import { ProfileView } from "../profile-view/profile-view";
 import { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { BrowserRouter,Route,Routes,} from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Navigate, useParams } from "react-router-dom";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 // import { Navbar, Nav, NavDropdown } from "react-bootstrap";
@@ -22,30 +22,46 @@ export const MainView = () => {
   const [favMovies, setFavMovies] = useState([]); // Initialize state for favorite movies
   const addFav = (movieId) => {
     setFavMovies((prevFavMovies) => [...prevFavMovies, movieId]);
-  
-    fetch(`https://mymovies-8b73c95d0ae4.herokuapp.com/users/${user.Username}/movies/${movieId}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`
-    }
-  })
-  .catch(error => console.error('Error:', error));
-};
-  
+
+    fetch(
+      `https://mymovies-8b73c95d0ae4.herokuapp.com/users/${user.Username}/movies/${movieId}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+      )
+      .then(response => response.json())
+      .then(data => {
+        // Update the user's favorites in the state
+        setFavMovies(data.FavoriteMovies);
+      })
+    .catch((error) => console.error("Error:", error));
+  };
+
   const removeFav = (movieId) => {
     setFavMovies((prevFavMovies) =>
       prevFavMovies.filter((id) => id !== movieId)
     );
-  
-    fetch(`https://mymovies-8b73c95d0ae4.herokuapp.com/users/${user.Username}/movies/${movieId}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
+
+    fetch(
+      `https://mymovies-8b73c95d0ae4.herokuapp.com/users/${user.Username}/movies/${movieId}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
       }
+    )
+    .then(response => response.json())
+    .then(data => {
+      // Update the user's favorites in the state
+      setFavMovies(data.FavoriteMovies);
     })
-    .catch(error => console.error('Error:', error));
+    .catch((error) => console.error("Error:", error));
   };
 
   useEffect(() => {
@@ -145,10 +161,13 @@ export const MainView = () => {
                   ) : (
                     <Col md={8}>
                       <MovieView
+                        addFav={addFav}
+                        removeFav={removeFav}
                         token={token}
-                        moviedata={moviedata.find(
+                        movie={moviedata.find(
                           (movie) => movie.Title === title
                         )}
+                        moviedata={moviedata}
                       />
                     </Col>
                   )}
@@ -167,11 +186,11 @@ export const MainView = () => {
                     <>
                       {moviedata.map((movie) => (
                         <Col className="mb-4" key={movie._id} md={3}>
-                          <MovieCard 
-                          movie={movie}
-                          isFav={favMovies.includes(movie._id)}
-                          addFav={addFav}
-                          removeFav={removeFav}   
+                          <MovieCard
+                            movie={movie}
+                            isFav={favMovies.includes(movie._id)}
+                            addFav={addFav}
+                            removeFav={removeFav}
                           />
                         </Col>
                       ))}
@@ -181,17 +200,17 @@ export const MainView = () => {
               }
             />
             <Route
-              path= "/profile" 
+              path="/profile"
               element={
-              <ProfileView  
-              user={user} 
-              setUser={setUser} 
-              moviedata={moviedata} /> 
-              } 
+                <ProfileView
+                  user={user}
+                  setUser={setUser}
+                  moviedata={moviedata}
+                />
+              }
             />
-                 
           </Routes>
-        </Row> 
+        </Row>
         {user && (
           <footer className="d-flex justify-content-center align-items-center">
             <button
