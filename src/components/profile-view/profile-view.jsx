@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Card, Container, Row, Col } from "react-bootstrap";
 import { MovieCard } from "../movie-card/movie-card";
 import UserInfo from "./user-info";
@@ -5,6 +6,13 @@ import UpdateUser from "./update-user";
 
 export function ProfileView({ user, setUser, moviedata, addFav, removeFav, favMovies }) {
   console.log(user, typeof removeFav);
+
+  // Inside ProfileView component
+const [favoriteMovies, setFavoriteMovies] = useState(favMovies);
+
+useEffect(() => {
+  setFavoriteMovies(favMovies);
+}, [favMovies]);
 
   // const [name, setName] = useState("");
   // const [username, setUsername] = useState("");
@@ -61,10 +69,10 @@ if (!user) {
 
         <h4>Favorite Movies</h4>
         {moviedata
-          .filter((movie) => user.FavoriteMovies.includes(movie._id))
+          .filter((movie) => favoriteMovies.includes(movie._id))
           .map((movie) => (
             <Col className="mb-4" key={movie._id} md={3}>
-              <MovieCard movie={movie} addFav={addFav} removeFav={removeFav} isFav={favMovies.includes(movie._id)}/>
+              <MovieCard movie={movie} addFav={addFav} removeFav={removeFav} isFav={favoriteMovies.includes(movie._id)}/>
             </Col>
           ))}
       </Row>

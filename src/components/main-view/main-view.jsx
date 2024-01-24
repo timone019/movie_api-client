@@ -21,8 +21,10 @@ export const MainView = () => {
 
   const [favMovies, setFavMovies] = useState([]); // Initialize state for favorite movies
   const addFav = (movieId) => {
+    // Update the favMovies state
     setFavMovies((prevFavMovies) => [...prevFavMovies, movieId]);
-
+    
+// Make a request to the server to add the movie to the user's favorites
     fetch(
       `https://mymovies-8b73c95d0ae4.herokuapp.com/users/${user.Username}/movies/${movieId}`,
       {

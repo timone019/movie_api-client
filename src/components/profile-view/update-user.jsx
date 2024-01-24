@@ -105,7 +105,7 @@ const UpdateUser = ({ user, setUser }) => {
         <Button variant="primary" type="submit">
           Update
         </Button>
-        <span> Click Update to save & store to Favorite Movie list below</span>
+        {/* <span> Click Update to save & store to Favorite Movie list below</span> */}
       </Form>
     </>
   );
