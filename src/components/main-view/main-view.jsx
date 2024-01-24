@@ -69,6 +69,18 @@ export const MainView = () => {
       return;
     }
 
+// Fetch the user's favorite movies
+fetch(`https://mymovies-8b73c95d0ae4.herokuapp.com/users/${user.Username}`, {
+  headers: { Authorization: `Bearer ${token}` },
+})
+  .then(response => response.json())
+  .then(data => {
+    // Update the favMovies state
+    setFavMovies(data.FavoriteMovies);
+  })
+  .catch(error => console.error('Error:', error));
+
+
     fetch("https://mymovies-8b73c95d0ae4.herokuapp.com/movies", {
       headers: { Authorization: `Bearer ${token}` },
     })
@@ -143,6 +155,7 @@ export const MainView = () => {
                         onLoggedIn={(user, token) => {
                           setUser(user);
                           setToken(token);
+                          setFavMovies(user.FavoriteMovies);
                         }}
                       />
                     </Col>
