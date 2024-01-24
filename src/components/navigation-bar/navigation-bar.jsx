@@ -4,7 +4,7 @@ import { Link, useNavigate, } from "react-router-dom";
 
 
 export const NavigationBar = ({ user, onLoggedOut, }) => {
-const navigate = useNavigate();
+const gonavigate = useNavigate();
 
 
   return (
@@ -24,7 +24,7 @@ const navigate = useNavigate();
                 <Nav.Link as={Link} to="/signup">
                   <h4>Sign Up</h4>
                 </Nav.Link> 
-                <Nav.Link as={Link} to="/movies">
+                <Nav.Link as={Link} to="/">
                   Home
                 </Nav.Link>
               </>
@@ -33,8 +33,11 @@ const navigate = useNavigate();
               <>
                 <Nav.Link as={Link} to="/"><h4>Home</h4></Nav.Link>
                 <Nav.Link as={Link} to="/profile"><h4>Profile</h4></Nav.Link>
-                <Nav.Link onClick={() => navigate(-1)}><h4>Back</h4></Nav.Link>
-                <Nav.Link onClick={onLoggedOut}><h4>Log Out</h4></Nav.Link>
+                <Nav.Link onClick={() => gonavigate(-1)}><h4>Back</h4></Nav.Link>
+                <Nav.Link onClick={() => {
+                  onLoggedOut();
+                  gonavigate("/login");
+                }}><h4>Log Out</h4></Nav.Link>
               </>
             )}
           </Nav>

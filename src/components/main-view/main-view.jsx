@@ -32,19 +32,19 @@ export const MainView = () => {
           Authorization: `Bearer ${token}`,
         },
       }
-      )
-      .then(response => response.json())
-      .then(data => {
+    )
+      .then((response) => response.json())
+      .then((data) => {
         // Update the user's favorites in the state
         setFavMovies(data.FavoriteMovies);
       })
-    .catch((error) => console.error("Error:", error));
+      .catch((error) => console.error("Error:", error));
   };
 
   const removeFav = (movieId) => {
-    setFavMovies((prevFavMovies) =>
-      prevFavMovies.filter((id) => id !== movieId)
-    );
+    // setFavMovies((prevFavMovies) =>
+    //   prevFavMovies.filter((id) => id !== movieId)
+    // );
 
     fetch(
       `https://mymovies-8b73c95d0ae4.herokuapp.com/users/${user.Username}/movies/${movieId}`,
@@ -56,12 +56,12 @@ export const MainView = () => {
         },
       }
     )
-    .then(response => response.json())
-    .then(data => {
-      // Update the user's favorites in the state
-      setFavMovies(data.FavoriteMovies);
-    })
-    .catch((error) => console.error("Error:", error));
+      .then((response) => response.json())
+      .then((data) => {
+        // Update the user's favorites in the state
+        setFavMovies(data.FavoriteMovies);
+      })
+      .catch((error) => console.error("Error:", error));
   };
 
   useEffect(() => {
@@ -107,6 +107,7 @@ export const MainView = () => {
             setToken(null);
             localStorage.clear();
           }}
+         
         />
 
         <Row className="justify-content-md-center">
@@ -151,30 +152,6 @@ export const MainView = () => {
             />
 
             <Route
-              path="/moviedata/:title"
-              element={
-                <>
-                  {!user ? (
-                    <Navigate to="/login" replace />
-                  ) : moviedata.length === 0 ? (
-                    <Col> The list is empty!</Col>
-                  ) : (
-                    <Col md={8}>
-                      <MovieView
-                        addFav={addFav}
-                        removeFav={removeFav}
-                        token={token}
-                        movie={moviedata.find(
-                          (movie) => movie.Title === title
-                        )}
-                        moviedata={moviedata}
-                      />
-                    </Col>
-                  )}
-                </>
-              }
-            />
-            <Route
               path="/"
               element={
                 <>
@@ -199,6 +176,32 @@ export const MainView = () => {
                 </>
               }
             />
+
+            <Route
+              path="/moviedata/:title"
+              element={
+                <>
+                  {!user ? (
+                    <Navigate to="/login" replace />
+                  ) : moviedata.length === 0 ? (
+                    <Col> The list is empty!</Col>
+                  ) : (
+                    <Col md={8}>
+                      <MovieView
+                        addFav={addFav}
+                        removeFav={removeFav}
+                        token={token}
+                        movie={moviedata.find((movie) => movie.Title === title)}
+                        moviedata={moviedata}
+                        user={user}
+                        favMovies={favMovies}
+                      />
+                    </Col>
+                  )}
+                </>
+              }
+            />
+
             <Route
               path="/profile"
               element={
@@ -206,11 +209,15 @@ export const MainView = () => {
                   user={user}
                   setUser={setUser}
                   moviedata={moviedata}
+                  addFav={addFav}
+                  removeFav={removeFav}
+                  favMovies={favMovies}
                 />
               }
             />
           </Routes>
         </Row>
+
         {user && (
           <footer className="d-flex justify-content-center align-items-center">
             <button
@@ -218,6 +225,7 @@ export const MainView = () => {
                 localStorage.clear();
                 setUser(null);
                 setToken(null);
+                
               }}
               className="logout-button md-4 mb-3"
               style={{ cursor: "pointer", width: "100px", height: "40px" }}

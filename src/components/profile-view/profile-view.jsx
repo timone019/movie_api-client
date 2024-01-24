@@ -3,8 +3,8 @@ import { MovieCard } from "../movie-card/movie-card";
 import UserInfo from "./user-info";
 import UpdateUser from "./update-user";
 
-export function ProfileView({ user, setUser, moviedata, setMoviedata }) {
-  console.log(user);
+export function ProfileView({ user, setUser, moviedata, addFav, removeFav, favMovies }) {
+  console.log(user, typeof removeFav);
 
   // const [name, setName] = useState("");
   // const [username, setUsername] = useState("");
@@ -25,6 +25,9 @@ export function ProfileView({ user, setUser, moviedata, setMoviedata }) {
   //   Email: email,
   //   Birthday: birthday,
   // };
+if (!user) {
+  return null;
+}
 
   return (
     <Container>
@@ -61,14 +64,9 @@ export function ProfileView({ user, setUser, moviedata, setMoviedata }) {
           .filter((movie) => user.FavoriteMovies.includes(movie._id))
           .map((movie) => (
             <Col className="mb-4" key={movie._id} md={3}>
-              <MovieCard movie={movie} />
+              <MovieCard movie={movie} addFav={addFav} removeFav={removeFav} isFav={favMovies.includes(movie._id)}/>
             </Col>
           ))}
-
-        {/* <FavoriteMovies
-                favoriteMovieList={favoriteMovieList}
-                removeFavorite={removeFavorite}
-              /> */}
       </Row>
     </Container>
   );
