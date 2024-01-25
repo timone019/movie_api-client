@@ -27,6 +27,7 @@ export const MovieCard = ({ movie, addFav, removeFav, isFav }) => {
           )}
         </div>
         <Card.Title>{movie.Title}</Card.Title>
+        <Card.Title>{movie.Year}</Card.Title>
       </Card.Body>
       <Card.Footer>
         <Link to={`/moviedata/${movie.Title}`} className="open-button">

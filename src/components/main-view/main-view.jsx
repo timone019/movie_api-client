@@ -104,6 +104,8 @@ fetch(`https://mymovies-8b73c95d0ae4.herokuapp.com/users/${user.Username}`, {
             },
             ImagePath: movie.ImagePath,
             Featured: movie.Featured,
+            Year: movie.Year,
+            TrailerPath: movie.TrailerPath
           };
         });
 

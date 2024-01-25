@@ -77,6 +77,23 @@ export const MovieView = ({
                 <h1>{movie.Title}</h1>
               </span>
             </div>
+            <div>
+              <span>
+                <h1>{movie.Year}</h1>
+              </span>
+            </div>
+            <div>
+              <span>
+                <a
+                  href={movie.TrailerPath}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="trailer-button"
+                >
+                  Watch Trailer
+                </a>
+              </span>
+            </div>
             <div mt-3>
               <span>Director: </span>
               <span>{movie.Director.Name}</span>
@@ -123,7 +140,7 @@ export const MovieView = ({
   );
 };
 MovieView.propTypes = {
-  token: PropTypes.string.isRequired,
+  // token: PropTypes.string.isRequired,
   addFav: PropTypes.func.isRequired,
   removeFav: PropTypes.func.isRequired,
   // isFav: PropTypes.bool.isRequired,

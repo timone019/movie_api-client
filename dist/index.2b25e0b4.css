@@ -13231,7 +13231,7 @@ textarea.form-control-lg {
   margin: 5px;
 }
 
-.back-button {
+.back-button, .trailer-button {
   color: #f5f5f5;
   background-color: #1e90ff;
   border: none;
