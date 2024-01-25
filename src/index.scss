@@ -1,4 +1,12 @@
 $primary: Black;
 $body-bg: CadetBlue;
+$card-bg: lightblue;
+
+  
+// $body-color: blue;
 
 @import "~bootstrap/scss/bootstrap.scss";
+
+.form-control {
+    background-color: lightcyan;
+  }
