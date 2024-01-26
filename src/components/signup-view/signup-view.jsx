@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Proptypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 import {
   Form,
   Button,
@@ -16,7 +17,7 @@ export const SignupView = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [birthday, setBirthday] = useState("");
-
+  const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -43,7 +44,7 @@ export const SignupView = () => {
       })
       .then((data) => {
         alert("Signup successful");
-        window.location.reload();
+        navigate('/login'); // Redirect to the login view
       })
       .catch((error) => {
         console.error(

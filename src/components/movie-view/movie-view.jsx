@@ -13,13 +13,13 @@ export const MovieView = ({
   favMovies,
   moviedata,
 }) => {
-  const { title: urlTitle } = useParams();
+  const { title } = useParams();
   const [movie, setMovie] = useState(null);
   const [similarMovies, setSimilarMovies] = useState([]);
   const [isFav, setIsFav] = useState(false);
 
   useEffect(() => {
-    const movie = moviedata.find((m) => m.Title === urlTitle);
+    const movie = moviedata.find((m) => m.Title === title);
     setMovie(movie);
 
     if (movie) {
@@ -29,7 +29,7 @@ export const MovieView = ({
       setSimilarMovies(similarMovies);
       setIsFav(user.FavoriteMovies.includes(movie._id));
     }
-  }, [urlTitle, moviedata, user]);
+  }, [title, moviedata, user]);
 
   const handleAddFav = (movieId) => {
     addFav(movieId);
@@ -94,7 +94,7 @@ export const MovieView = ({
                 </a>
               </span>
             </div>
-            <div mt-3>
+            <div className="mt-3">
               <span>Director: </span>
               <span>{movie.Director.Name}</span>
             </div>
@@ -102,8 +102,8 @@ export const MovieView = ({
               <span>Genre: </span>
               <span>{movie.Genre.Name}</span>
             </div>
-            <br />
-            <div>
+          
+            <div className="mt-3">
               <p style={{ maxWidth: "800px", margin: "0 auto" }}>
                 <span>{movie.Description}</span>
               </p>

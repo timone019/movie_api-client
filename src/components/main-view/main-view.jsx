@@ -81,6 +81,12 @@ fetch(`https://mymovies-8b73c95d0ae4.herokuapp.com/users/${user.Username}`, {
     setFavMovies(data.FavoriteMovies);
   })
   .catch(error => console.error('Error:', error));
+  }, [token]);
+
+  useEffect(() => {
+    if (!token) {
+      return;
+    }
 
 
     fetch("https://mymovies-8b73c95d0ae4.herokuapp.com/movies", {

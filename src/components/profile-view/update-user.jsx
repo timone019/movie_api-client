@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, ButtonGroup, ButtonToolbar } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const UpdateUser = ({ user, setUser }) => {
   const [updatedUser, setUpdatedUser] = useState({
@@ -12,13 +13,22 @@ const UpdateUser = ({ user, setUser }) => {
   // const [password, setPassword] = useState("");
   // const [email, setEmail] = useState("");
   // const [birthday, setBirthday] = useState("");
-
+  // const [deletedUser, setDeletedUser] = useState({
+  //   Passowrd: "",
+  // });
   const handleUpdate = async (e) => {
     setUpdatedUser({ ...updatedUser, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const confirmUpdate = window.confirm(
+      "Are you sure you want to update your profile?"
+    );
+    if (!confirmUpdate) {
+      return;
+    }
 
     const token = localStorage.getItem("token");
     try {
@@ -38,14 +48,55 @@ const UpdateUser = ({ user, setUser }) => {
         const updatedUserData = await response.json();
         setUser(updatedUserData);
         console.log("User updated successfully:", updatedUserData);
-       
       } else {
         console.error("Failed to update user:", response.statusText);
-       
       }
     } catch (error) {
       console.error("Error updating user:", error.message);
-     
+    }
+  };
+
+  const navigate = useNavigate();
+  const handleDeleteSubmit = async (e) => {
+    e.preventDefault();
+
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete your account?"
+    );
+    if (!confirmDelete) {
+      return;
+    }
+
+    const token = localStorage.getItem("token");
+    const password = updatedUser.Password; // Get the password from the form
+    if (!password) {
+      window.alert("Please enter your password to delete your account");
+      return;
+    }
+    try {
+      const response = await fetch(
+        `https://mymovies-8b73c95d0ae4.herokuapp.com/users/${user.Username}`,
+        {
+          method: "Delete",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        window.alert("User deleted successfully");
+        localStorage.removeItem("user"); // Remove the user data from local storage
+        localStorage.removeItem("token"); // Remove the token from local storage
+        setUser(null); // Clear the user data from the state
+        navigate("/login"); // Redirect to login page
+      } else {
+        console.error("Failed to delete user:", response.statusText);
+        window.alert("User not deleted");
+      }
+    } catch (error) {
+      console.error("Error deleting user:", error.message);
+      window.alert("User not deleted");
     }
   };
 
@@ -70,7 +121,7 @@ const UpdateUser = ({ user, setUser }) => {
           <Form.Control
             type="password"
             name="Password"
-            defaultValue=""
+            defaultValue={user.Password}
             onChange={(e) => handleUpdate(e)}
             required
             minLength="8"
@@ -101,11 +152,33 @@ const UpdateUser = ({ user, setUser }) => {
           />
         </Form.Group>
 
-        <br />
-        <Button variant="primary" type="submit">
-          Update
+        <ButtonToolbar aria-label="Toolbar with button groups" className="mt-3">
+          <ButtonGroup className="me-5" aria-label="First group">
+            <Button variant="primary" type="submit">
+              Update User
+            </Button>
+          </ButtonGroup>
+          <ButtonGroup aria-label="Second group">
+            <Button variant="danger" type="submit" onClick={handleDeleteSubmit}>
+              Delete User
+            </Button>
+          </ButtonGroup>
+        </ButtonToolbar>
+
+        {/* <br />
+        <Button variant="primary" type="submit" className="mr-5" >
+          Update Profile
         </Button>
-        {/* <span> Click Update to save & store to Favorite Movie list below</span> */}
+        
+
+        <Button
+          variant="danger"
+          type="submit"
+          onClick={handleDeleteSubmit}
+          
+        >
+          Delete Profile
+        </Button> */}
       </Form>
     </>
   );
