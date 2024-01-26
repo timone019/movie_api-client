@@ -7,7 +7,9 @@ import { Heart, HeartFill } from "react-bootstrap-icons";
 export const MovieCard = ({ movie, addFav, removeFav, isFav }) => {
   return (
     <Card className="h-100">
+       <Link to={`/moviedata/${movie.Title}`}>
       <Card.Img variant="top" src={movie.ImagePath} />
+      </Link>
       <Card.Body>
         <div>
           {isFav ? (

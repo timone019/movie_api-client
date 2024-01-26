@@ -13223,6 +13223,12 @@ textarea.form-control-lg {
   text-decoration: none;
 }
 
+@media screen and (width >= 768px) and (width <= 991px) {
+  .open-button {
+    padding: 2px 6px;
+  }
+}
+
 .w-100 {
   margin-top: 10px;
 }
