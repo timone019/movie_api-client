@@ -48,6 +48,8 @@ const UpdateUser = ({ user, setUser }) => {
         const updatedUserData = await response.json();
         setUser(updatedUserData);
         console.log("User updated successfully:", updatedUserData);
+      
+      window.alert("Profile updated successfully");
       } else {
         console.error("Failed to update user:", response.statusText);
       }
