@@ -93,6 +93,7 @@ fetch(`https://mymovies-8b73c95d0ae4.herokuapp.com/users/${user.Username}`, {
     })
       .then((response) => response.json())
       .then((moviedata) => {
+        // match the movies from the database with the movies from the api
         const moviesFromApi = moviedata.map((movie) => {
           return {
             _id: movie._id,

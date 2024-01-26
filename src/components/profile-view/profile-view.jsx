@@ -5,7 +5,7 @@ import UserInfo from "./user-info";
 import UpdateUser from "./update-user";
 
 export function ProfileView({ user, setUser, moviedata, addFav, removeFav, favMovies }) {
-  console.log(user, typeof removeFav);
+  // console.log(user, typeof removeFav);
 
   // Inside ProfileView component
 const [favoriteMovies, setFavoriteMovies] = useState(favMovies);
