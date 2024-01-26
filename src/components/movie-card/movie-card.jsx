@@ -11,7 +11,7 @@ export const MovieCard = ({ movie, addFav, removeFav, isFav }) => {
       <Card.Img variant="top" src={movie.ImagePath} />
       </Link>
       <Card.Body>
-        <div>
+        <div className="fav-icon">
           {isFav ? (
             <HeartFill
               size={20}

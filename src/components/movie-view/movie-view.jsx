@@ -54,7 +54,7 @@ export const MovieView = ({
                 style={{ maxWidth: "600px" }}
               />
             </div>
-            <div>
+            <div className="fav-icon">
               {isFav ? (
                 <HeartFill
                   size={20}

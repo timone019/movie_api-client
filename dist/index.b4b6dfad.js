@@ -27547,6 +27547,7 @@ const MovieCard = ({ movie, addFav, removeFav, isFav })=>{
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "fav-icon",
                         children: isFav ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrapIcons.HeartFill), {
                             size: 20,
                             color: "red",
@@ -47433,6 +47434,7 @@ const MovieView = ({ user, addFav, removeFav, favMovies, moviedata })=>{
                             columnNumber: 13
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                            className: "fav-icon",
                             children: isFav ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrapIcons.HeartFill), {
                                 size: 20,
                                 color: "red",
