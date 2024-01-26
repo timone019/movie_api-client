@@ -85,18 +85,18 @@ const UpdateUser = ({ user, setUser }) => {
       );
 
       if (response.status === 200) {
-        window.alert("User deleted successfully");
+        window.alert("Profile deleted successfully");
         localStorage.removeItem("user"); // Remove the user data from local storage
         localStorage.removeItem("token"); // Remove the token from local storage
         setUser(null); // Clear the user data from the state
         navigate("/login"); // Redirect to login page
       } else {
-        console.error("Failed to delete user:", response.statusText);
-        window.alert("User not deleted");
+        console.error("failed to delete profile:", response.statusText);
+        window.alert("Profile not Deleted");
       }
     } catch (error) {
       console.error("Error deleting user:", error.message);
-      window.alert("User not deleted");
+      window.alert("Profile not Deleted");
     }
   };
 

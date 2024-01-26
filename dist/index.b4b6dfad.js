@@ -2957,6 +2957,7 @@ var _containerDefault = parcelHelpers.interopDefault(_container);
 // Main component (will eventually use all the others)
 const MyFlixApplication = ()=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _containerDefault.default), {
+        className: "main-content",
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _mainView.MainView), {}, void 0, false, {
             fileName: "src/index.jsx",
             lineNumber: 13,
@@ -27480,31 +27481,6 @@ const MainView = ()=>{
                     fileName: "src/components/main-view/main-view.jsx",
                     lineNumber: 135,
                     columnNumber: 9
-                }, undefined),
-                user && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("footer", {
-                    className: "d-flex justify-content-center align-items-center",
-                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                        onClick: ()=>{
-                            localStorage.clear();
-                            setUser(null);
-                            setToken(null);
-                        },
-                        className: "logout-button md-4 mb-3",
-                        style: {
-                            cursor: "pointer",
-                            width: "100px",
-                            height: "40px"
-                        },
-                        children: "Logout"
-                    }, void 0, false, {
-                        fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 246,
-                        columnNumber: 13
-                    }, undefined)
-                }, void 0, false, {
-                    fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 245,
-                    columnNumber: 11
                 }, undefined)
             ]
         }, void 0, true, {
@@ -47623,6 +47599,7 @@ const MovieView = ({ user, addFav, removeFav, favMovies, moviedata })=>{
                     columnNumber: 11
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Container), {
+                    className: "mb-3",
                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
                         children: similarMovies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                                 md: 3,
@@ -47650,20 +47627,6 @@ const MovieView = ({ user, addFav, removeFav, favMovies, moviedata })=>{
                 }, void 0, false, {
                     fileName: "src/components/movie-view/movie-view.jsx",
                     lineNumber: 115,
-                    columnNumber: 11
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
-                    fileName: "src/components/movie-view/movie-view.jsx",
-                    lineNumber: 133,
-                    columnNumber: 11
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
-                    to: "/",
-                    className: "back-button",
-                    children: "Home"
-                }, void 0, false, {
-                    fileName: "src/components/movie-view/movie-view.jsx",
-                    lineNumber: 134,
                     columnNumber: 11
                 }, undefined)
             ]
@@ -48174,6 +48137,7 @@ const NavigationBar = ({ user, onLoggedOut })=>{
         bg: "info",
         variant: "light",
         expand: "sm",
+        fixed: "top",
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Container), {
             children: [
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Navbar).Brand, {
@@ -48656,18 +48620,18 @@ const UpdateUser = ({ user, setUser })=>{
                 }
             });
             if (response.status === 200) {
-                window.alert("User deleted successfully");
+                window.alert("Profile deleted successfully");
                 localStorage.removeItem("user"); // Remove the user data from local storage
                 localStorage.removeItem("token"); // Remove the token from local storage
                 setUser(null); // Clear the user data from the state
                 navigate("/login"); // Redirect to login page
             } else {
-                console.error("Failed to delete user:", response.statusText);
-                window.alert("User not deleted");
+                console.error("failed to delete profile:", response.statusText);
+                window.alert("Profile not Deleted");
             }
         } catch (error) {
             console.error("Error deleting user:", error.message);
-            window.alert("User not deleted");
+            window.alert("Profile not Deleted");
         }
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {

@@ -8,7 +8,7 @@ const gonavigate = useNavigate();
 
 
   return (
-    <Navbar bg="info" variant="light" expand="sm">
+    <Navbar bg="info" variant="light" expand="sm" fixed="top">
       <Container>
         <Navbar.Brand as={Link} to="/">
           <h3>Movies App</h3>

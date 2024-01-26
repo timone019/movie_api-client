@@ -241,7 +241,7 @@ fetch(`https://mymovies-8b73c95d0ae4.herokuapp.com/users/${user.Username}`, {
           </Routes>
         </Row>
 
-        {user && (
+        {/* {user && (
           <footer className="d-flex justify-content-center align-items-center">
             <button
               onClick={() => {
@@ -256,7 +256,7 @@ fetch(`https://mymovies-8b73c95d0ae4.herokuapp.com/users/${user.Username}`, {
               Logout
             </button>
           </footer>
-        )}
+        )} */}
       </Container>
     </BrowserRouter>
   );

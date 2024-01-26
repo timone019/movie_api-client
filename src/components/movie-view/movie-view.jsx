@@ -112,7 +112,7 @@ export const MovieView = ({
 
           <br />
           <h2>Similar movies</h2>
-          <Container>
+          <Container className="mb-3">
             <Row>
               {similarMovies.map((movie) => (
                 <Col
@@ -130,10 +130,10 @@ export const MovieView = ({
               ))}
             </Row>
           </Container>
-          <br />
+          {/* <br />
           <Link to={"/"} className="back-button">
             Home
-          </Link>
+          </Link> */}
         </div>
       )}
     </>

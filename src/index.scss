@@ -2,7 +2,9 @@ $primary: Black;
 $body-bg: CadetBlue;
 $card-bg: lightblue;
 
-  
+.main-content {
+  margin-top: 5rem;
+}  
 // $body-color: blue;
 
 @import "~bootstrap/scss/bootstrap.scss";

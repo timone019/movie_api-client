@@ -13240,6 +13240,10 @@ textarea.form-control-lg {
   text-decoration: none;
 }
 
+.main-content {
+  margin-top: 5rem;
+}
+
 :root, [data-bs-theme="light"] {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
