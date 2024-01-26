@@ -155,12 +155,12 @@ const UpdateUser = ({ user, setUser }) => {
         <ButtonToolbar aria-label="Toolbar with button groups" className="mt-3">
           <ButtonGroup className="me-5" aria-label="First group">
             <Button variant="primary" type="submit">
-              Update User
+              Update Profile
             </Button>
           </ButtonGroup>
           <ButtonGroup aria-label="Second group">
             <Button variant="danger" type="submit" onClick={handleDeleteSubmit}>
-              Delete User
+              Delete Profile
             </Button>
           </ButtonGroup>
         </ButtonToolbar>

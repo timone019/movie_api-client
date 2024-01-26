@@ -48463,7 +48463,7 @@ function ProfileView({ user, setUser, moviedata, addFav, removeFav, favMovies })
                     lineNumber: 70,
                     columnNumber: 9
                 }, this),
-                moviedata.filter((movie)=>favoriteMovies.includes(movie._id)).map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                favoriteMovies.length > 0 ? moviedata.filter((movie)=>favoriteMovies.includes(movie._id)).map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                         className: "mb-4",
                         md: 3,
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
@@ -48473,14 +48473,20 @@ function ProfileView({ user, setUser, moviedata, addFav, removeFav, favMovies })
                             isFav: favoriteMovies.includes(movie._id)
                         }, void 0, false, {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 75,
+                            lineNumber: 76,
                             columnNumber: 15
                         }, this)
                     }, movie._id, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 74,
+                        lineNumber: 75,
                         columnNumber: 13
-                    }, this))
+                    }, this)) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                    children: "There are currently No Movies in Favorite List"
+                }, void 0, false, {
+                    fileName: "src/components/profile-view/profile-view.jsx",
+                    lineNumber: 80,
+                    columnNumber: 11
+                }, this)
             ]
         }, void 0, true, {
             fileName: "src/components/profile-view/profile-view.jsx",
@@ -48514,13 +48520,19 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 function UserInfo({ username, email, birthday }) {
+    const formattedBirthday = new Date(birthday);
+    const month = formattedBirthday.toLocaleString("default", {
+        month: "long"
+    });
+    const day = formattedBirthday.getDate();
+    const year = formattedBirthday.getFullYear();
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
                 children: "User Info"
             }, void 0, false, {
                 fileName: "src/components/profile-view/user-info.jsx",
-                lineNumber: 5,
+                lineNumber: 10,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -48530,7 +48542,7 @@ function UserInfo({ username, email, birthday }) {
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile-view/user-info.jsx",
-                lineNumber: 6,
+                lineNumber: 11,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -48540,18 +48552,18 @@ function UserInfo({ username, email, birthday }) {
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile-view/user-info.jsx",
-                lineNumber: 7,
+                lineNumber: 12,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                 children: [
                     "Birthday: ",
-                    birthday,
+                    `${month} ${day}, ${year}`,
                     " "
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile-view/user-info.jsx",
-                lineNumber: 8,
+                lineNumber: 13,
                 columnNumber: 7
             }, this)
         ]
@@ -48791,7 +48803,7 @@ const UpdateUser = ({ user, setUser })=>{
                                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                                     variant: "primary",
                                     type: "submit",
-                                    children: "Update User"
+                                    children: "Update Profile"
                                 }, void 0, false, {
                                     fileName: "src/components/profile-view/update-user.jsx",
                                     lineNumber: 157,
@@ -48808,7 +48820,7 @@ const UpdateUser = ({ user, setUser })=>{
                                     variant: "danger",
                                     type: "submit",
                                     onClick: handleDeleteSubmit,
-                                    children: "Delete User"
+                                    children: "Delete Profile"
                                 }, void 0, false, {
                                     fileName: "src/components/profile-view/update-user.jsx",
                                     lineNumber: 162,

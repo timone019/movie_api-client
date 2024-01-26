@@ -68,13 +68,17 @@ if (!user) {
         </Col>
 
         <h4>Favorite Movies</h4>
-        {moviedata
+        {favoriteMovies.length > 0 ? (          
+        moviedata
           .filter((movie) => favoriteMovies.includes(movie._id))
           .map((movie) => (
             <Col className="mb-4" key={movie._id} md={3}>
               <MovieCard movie={movie} addFav={addFav} removeFav={removeFav} isFav={favoriteMovies.includes(movie._id)}/>
             </Col>
-          ))}
+          ))
+        ) : (
+          <p>There are currently No Movies in Favorite List</p>
+        ) }
       </Row>
     </Container>
   );
