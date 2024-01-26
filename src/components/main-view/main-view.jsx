@@ -9,7 +9,6 @@ import { Container, Row, Col } from "react-bootstrap";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Navigate, useParams } from "react-router-dom";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
-// import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));

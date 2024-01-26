@@ -1,7 +1,7 @@
 import "./movie-view.scss";
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import { MovieCard } from "../movie-card/movie-card";
 import { Heart, HeartFill } from "react-bootstrap-icons";
@@ -13,13 +13,13 @@ export const MovieView = ({
   favMovies,
   moviedata,
 }) => {
-  const { title } = useParams();
+  const { title: urlTitle } = useParams();
   const [movie, setMovie] = useState(null);
   const [similarMovies, setSimilarMovies] = useState([]);
   const [isFav, setIsFav] = useState(false);
 
   useEffect(() => {
-    const movie = moviedata.find((m) => m.Title === title);
+    const movie = moviedata.find((m) => m.Title === urlTitle);
     setMovie(movie);
 
     if (movie) {
@@ -29,7 +29,7 @@ export const MovieView = ({
       setSimilarMovies(similarMovies);
       setIsFav(user.FavoriteMovies.includes(movie._id));
     }
-  }, [title, moviedata, user]);
+  }, [urlTitle, moviedata, user]);
 
   const handleAddFav = (movieId) => {
     addFav(movieId);
