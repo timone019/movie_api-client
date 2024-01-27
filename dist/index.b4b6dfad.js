@@ -48455,7 +48455,7 @@ function ProfileView({ user, setUser, moviedata, addFav, removeFav, favMovies })
                         lineNumber: 75,
                         columnNumber: 13
                     }, this)) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                    children: "There are currently No Movies in Favorite List"
+                    children: "There are currently No Movies in your Favorite List"
                 }, void 0, false, {
                     fileName: "src/components/profile-view/profile-view.jsx",
                     lineNumber: 80,

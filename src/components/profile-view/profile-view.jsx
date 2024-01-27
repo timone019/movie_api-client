@@ -77,7 +77,7 @@ if (!user) {
             </Col>
           ))
         ) : (
-          <p>There are currently No Movies in Favorite List</p>
+          <p>There are currently No Movies in your Favorite List</p>
         ) }
       </Row>
     </Container>
