@@ -84,15 +84,15 @@ export const MovieView = ({
             </div>
             <div>
               <span>
-                <a
-                  href={movie.TrailerPath}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <iframe
+                  src={movie.TrailerPath.replace("watch?v=", "embed/")}
+                  title="Movie Trailer"
                   className="trailer-button"
+                  allowFullScreen
                 >
-                  Watch Trailer
-                </a>
+                </iframe>
               </span>
+              <h3>Watch Trailer</h3>
             </div>
             <div className="mt-3">
               <span>Director: </span>
