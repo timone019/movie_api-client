@@ -82,18 +82,20 @@ export const MovieView = ({
                 <h3>{movie.Year} - {movie.Rating} - {movie.Runtime}</h3>
               </span>
             </div>
-            <div>
+            <div style={{position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', maxWidth: '600px', margin: '0 auto'}}>
               <span>
                 <iframe
                   src={movie.TrailerPath.replace("watch?v=", "embed/")}
                   title="Movie Trailer"
                   className="trailer-button"
                   allowFullScreen
+                  style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}
+                 
                 >
                 </iframe>
               </span>
-              <h4>Watch Trailer</h4>
             </div>
+            <h4>Watch Trailer</h4>
             <div className="mt-3">
               <span>Director: </span>
               <span>{movie.Director.Name}</span>
