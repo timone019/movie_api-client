@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Proptypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import {
   Form,
@@ -38,14 +37,14 @@ export const SignupView = () => {
     })
       .then((response) => {
         if (!response.ok) {
-          throw new Error("HTTP error! status: ${response.status}");
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
         return response.json();
       })
-      .then((data) => {
+      .then(() => {
         alert("Signup successful");
         navigate('/login'); // Redirect to the login view
-      })
+      })  
       .catch((error) => {
         console.error(
         "There was an error signing up. Please try again.",

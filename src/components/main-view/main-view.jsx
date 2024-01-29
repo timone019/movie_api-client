@@ -111,7 +111,9 @@ fetch(`https://mymovies-8b73c95d0ae4.herokuapp.com/users/${user.Username}`, {
             ImagePath: movie.ImagePath,
             Featured: movie.Featured,
             Year: movie.Year,
-            TrailerPath: movie.TrailerPath
+            TrailerPath: movie.TrailerPath, 
+            Rating: movie.Rating,
+            Runtime: movie.Runtime
           };
         });
 
@@ -240,23 +242,6 @@ fetch(`https://mymovies-8b73c95d0ae4.herokuapp.com/users/${user.Username}`, {
             />
           </Routes>
         </Row>
-
-        {/* {user && (
-          <footer className="d-flex justify-content-center align-items-center">
-            <button
-              onClick={() => {
-                localStorage.clear();
-                setUser(null);
-                setToken(null);
-                
-              }}
-              className="logout-button md-4 mb-3"
-              style={{ cursor: "pointer", width: "100px", height: "40px" }}
-            >
-              Logout
-            </button>
-          </footer>
-        )} */}
       </Container>
     </BrowserRouter>
   );

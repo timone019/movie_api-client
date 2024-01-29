@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const UpdateUser = ({ user, setUser }) => {
   const [updatedUser, setUpdatedUser] = useState({
+    FullName: user.FullName,
     Username: user.Username,
     Password: user.Password,
     Email: user.Email,
@@ -16,6 +17,10 @@ const UpdateUser = ({ user, setUser }) => {
   // const [deletedUser, setDeletedUser] = useState({
   //   Passowrd: "",
   // });
+
+  let date = new Date(user.Birthday);
+  let formattedDate = date.toISOString().substring(0, 10);
+
   const handleUpdate = async (e) => {
     setUpdatedUser({ ...updatedUser, [e.target.name]: e.target.value });
   };
@@ -48,8 +53,8 @@ const UpdateUser = ({ user, setUser }) => {
         const updatedUserData = await response.json();
         setUser(updatedUserData);
         console.log("User updated successfully:", updatedUserData);
-      
-      window.alert("Profile updated successfully");
+
+        window.alert("Profile updated successfully");
       } else {
         console.error("Failed to update user:", response.statusText);
       }
@@ -107,6 +112,18 @@ const UpdateUser = ({ user, setUser }) => {
       <h2>Update User Info</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group>
+          <Form.Label>FullName:</Form.Label>
+          <Form.Control
+            type="text"
+            name="FulName"
+            defaultValue={user.FullName}
+            onChange={(e) => handleUpdate(e)}
+            required
+            placeholder="Enter First and Last Name"
+          />
+        </Form.Group>
+
+        <Form.Group>
           <Form.Label>Username:</Form.Label>
           <Form.Control
             type="text"
@@ -123,11 +140,11 @@ const UpdateUser = ({ user, setUser }) => {
           <Form.Control
             type="password"
             name="Password"
-            defaultValue={user.Password}
+            defaultValue=""
             onChange={(e) => handleUpdate(e)}
             required
             minLength="8"
-            placeholder="Your password must be at least 8 characters or more"
+            placeholder="Enter your password"
           />
         </Form.Group>
 
@@ -149,8 +166,9 @@ const UpdateUser = ({ user, setUser }) => {
             type="date"
             name="Birthday"
             placeholder="Enter your birthday"
-            defaultValue={user.Birthday}
+            defaultValue={formattedDate}
             onChange={(e) => handleUpdate(e)}
+            required
           />
         </Form.Group>
 
@@ -166,21 +184,6 @@ const UpdateUser = ({ user, setUser }) => {
             </Button>
           </ButtonGroup>
         </ButtonToolbar>
-
-        {/* <br />
-        <Button variant="primary" type="submit" className="mr-5" >
-          Update Profile
-        </Button>
-        
-
-        <Button
-          variant="danger"
-          type="submit"
-          onClick={handleDeleteSubmit}
-          
-        >
-          Delete Profile
-        </Button> */}
       </Form>
     </>
   );

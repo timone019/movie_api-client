@@ -79,7 +79,7 @@ export const MovieView = ({
             </div>
             <div>
               <span>
-                <h1>{movie.Year}</h1>
+                <h3>{movie.Year} - {movie.Rating} - {movie.Runtime}</h3>
               </span>
             </div>
             <div>
@@ -92,7 +92,7 @@ export const MovieView = ({
                 >
                 </iframe>
               </span>
-              <h3>Watch Trailer</h3>
+              <h4>Watch Trailer</h4>
             </div>
             <div className="mt-3">
               <span>Director: </span>

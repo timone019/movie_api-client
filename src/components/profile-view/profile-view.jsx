@@ -45,6 +45,7 @@ if (!user) {
             <Card.Body>
               {user && (  
               <UserInfo
+                fullname={user.FullName}
                 username={user.Username}
                 email={user.Email}
                 birthday={user.Birthday}

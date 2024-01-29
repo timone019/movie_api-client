@@ -1,16 +1,19 @@
-
-function UserInfo({ username, email, birthday }) {
+function UserInfo({ username, email, birthday, fullname }) {
   const formattedBirthday = new Date(birthday);
-  const month = formattedBirthday.toLocaleString('default', { month: 'long' });
-  const day = formattedBirthday.getDate();
-  const year = formattedBirthday.getFullYear();
+  const month = formattedBirthday.getUTCMonth();
+  const day = formattedBirthday.getUTCDate();
+  const year = formattedBirthday.getUTCFullYear();
+  const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"];
+  const monthName = monthNames[month];
     
   return (
     <>
-      <h4>User Info</h4>
+      <h3>Hello</h3>
+      <h5>{fullname}</h5>
       <p>Username: {username}</p>
       <p>Email: {email}</p>
-      <p>Birthday: {`${month} ${day}, ${year}`} </p>
+      <p>Birthday: {`${monthName} ${day}, ${year}`} </p>
     </>
   );
 }
