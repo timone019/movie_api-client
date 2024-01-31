@@ -26,6 +26,8 @@ export const LoginView = ({ onLoggedIn }) => {
     fetch("https://mymovies-8b73c95d0ae4.herokuapp.com/login", {
       method: "POST",
       headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
