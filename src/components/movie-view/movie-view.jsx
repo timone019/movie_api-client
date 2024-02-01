@@ -113,7 +113,7 @@ export const MovieView = ({
           </div>
 
           <br />
-          <h2>Similar movies</h2>
+          <h2>Check Out Some Similar movies</h2>
           <Container className="mb-3">
             <Row>
               {similarMovies.map((movie) => (
