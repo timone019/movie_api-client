@@ -109,7 +109,7 @@ const UpdateUser = ({ user, setUser }) => {
 
   return (
     <>
-      <h2>Update User Info</h2>
+      <h2>Edit Profile</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group>
           <Form.Label>FullName:</Form.Label>

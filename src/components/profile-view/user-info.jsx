@@ -9,8 +9,8 @@ function UserInfo({ username, email, birthday, fullname }) {
     
   return (
     <>
-      <h3>Hello</h3>
-      <h5>{fullname}</h5>
+      <h3><strong>Hello</strong></h3>
+      <h5><strong>{fullname}</strong></h5>
       <p>Username: {username}</p>
       <p>Email: {email}</p>
       <p>Birthday: {`${monthName} ${day}, ${year}`} </p>

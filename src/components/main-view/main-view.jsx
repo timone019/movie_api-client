@@ -9,6 +9,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Navigate, useParams } from "react-router-dom";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
+import { FormControl } from "react-bootstrap";
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -18,12 +19,17 @@ export const MainView = () => {
   const [moviedata, setMovies] = useState([]);
   const { title } = useParams();
 
+  const [searchTerm, setSearchTerm] = useState("");
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
   const [favMovies, setFavMovies] = useState([]); // Initialize state for favorite movies
   const addFav = (movieId) => {
     // Update the favMovies state
     setFavMovies((prevFavMovies) => [...prevFavMovies, movieId]);
-    
-// Make a request to the server to add the movie to the user's favorites
+
+    // Make a request to the server to add the movie to the user's favorites
     fetch(
       `https://mymovies-8b73c95d0ae4.herokuapp.com/users/${user.Username}/movies/${movieId}`,
       {
@@ -70,23 +76,25 @@ export const MainView = () => {
       return;
     }
 
-// Fetch the user's favorite movies
-fetch(`https://mymovies-8b73c95d0ae4.herokuapp.com/users/${user.Username}`, {
-  headers: { Authorization: `Bearer ${token}` },
-})
-  .then(response => response.json())
-  .then(data => {
-    // Update the favMovies state
-    setFavMovies(data.FavoriteMovies);
-  })
-  .catch(error => console.error('Error:', error));
+    // Fetch the user's favorite movies
+    fetch(
+      `https://mymovies-8b73c95d0ae4.herokuapp.com/users/${user.Username}`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        // Update the favMovies state
+        setFavMovies(data.FavoriteMovies);
+      })
+      .catch((error) => console.error("Error:", error));
   }, [token]);
 
   useEffect(() => {
     if (!token) {
       return;
     }
-
 
     fetch("https://mymovies-8b73c95d0ae4.herokuapp.com/movies", {
       headers: { Authorization: `Bearer ${token}` },
@@ -111,9 +119,9 @@ fetch(`https://mymovies-8b73c95d0ae4.herokuapp.com/users/${user.Username}`, {
             ImagePath: movie.ImagePath,
             Featured: movie.Featured,
             Year: movie.Year,
-            TrailerPath: movie.TrailerPath, 
+            TrailerPath: movie.TrailerPath,
             Rating: movie.Rating,
-            Runtime: movie.Runtime
+            Runtime: movie.Runtime,
           };
         });
 
@@ -131,7 +139,6 @@ fetch(`https://mymovies-8b73c95d0ae4.herokuapp.com/users/${user.Username}`, {
             setToken(null);
             localStorage.clear();
           }}
-         
         />
 
         <Row className="justify-content-md-center">
@@ -183,19 +190,36 @@ fetch(`https://mymovies-8b73c95d0ae4.herokuapp.com/users/${user.Username}`, {
                   {!user ? (
                     <Navigate to="/login" replace />
                   ) : moviedata.length === 0 ? (
-                    <Col> The list is empty!</Col>
+                    <Col></Col>
                   ) : (
                     <>
-                      {moviedata.map((movie) => (
-                        <Col className="mb-4" key={movie._id} md={3}>
-                          <MovieCard
-                            movie={movie}
-                            isFav={favMovies.includes(movie._id)}
-                            addFav={addFav}
-                            removeFav={removeFav}
+                      <Row className="justify-content-md-center">
+                        <Col xs lg="4">
+                          <FormControl
+                            type="text"
+                            placeholder="Search"
+                            className="mr-sm-2"
+                            value={searchTerm}
+                            onChange={handleSearchChange}
                           />
                         </Col>
-                      ))}
+                      </Row>
+                      {moviedata
+                        .filter((movie) =>
+                          movie.Title.toLowerCase().includes(
+                            searchTerm.toLowerCase()
+                          )
+                        )
+                        .map((movie) => (
+                          <Col className="mb-4" key={movie._id} md={3}>
+                            <MovieCard
+                              movie={movie}
+                              isFav={favMovies.includes(movie._id)}
+                              addFav={addFav}
+                              removeFav={removeFav}
+                            />
+                          </Col>
+                        ))}
                     </>
                   )}
                 </>
@@ -209,7 +233,7 @@ fetch(`https://mymovies-8b73c95d0ae4.herokuapp.com/users/${user.Username}`, {
                   {!user ? (
                     <Navigate to="/login" replace />
                   ) : moviedata.length === 0 ? (
-                    <Col> The list is empty!</Col>
+                    <Col></Col>
                   ) : (
                     <Col md={8}>
                       <MovieView
