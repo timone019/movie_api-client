@@ -9,6 +9,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Navigate, useParams } from "react-router-dom";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
+import { FormControl } from "react-bootstrap";
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -17,6 +18,12 @@ export const MainView = () => {
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [moviedata, setMovies] = useState([]);
   const { title } = useParams();
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+  
 
   const [favMovies, setFavMovies] = useState([]); // Initialize state for favorite movies
   const addFav = (movieId) => {
@@ -183,10 +190,25 @@ fetch(`https://mymovies-8b73c95d0ae4.herokuapp.com/users/${user.Username}`, {
                   {!user ? (
                     <Navigate to="/login" replace />
                   ) : moviedata.length === 0 ? (
-                    <Col> The list is empty!</Col>
+                    <Col></Col>
                   ) : (
                     <>
-                      {moviedata.map((movie) => (
+                    <Row className="justify-content-md-center">
+                      <Col xs lg='4'>
+                      <FormControl
+                        type="text"
+                        placeholder="Search"
+                        className="mr-sm-2"
+                        value={searchTerm}
+                        onChange={handleSearchChange}
+                        />
+                      </Col>
+                    </Row>
+                      {moviedata
+                      .filter((movie) =>
+                        movie.Title.toLowerCase().includes(searchTerm.toLowerCase())
+                      )
+                      .map((movie) => (
                         <Col className="mb-4" key={movie._id} md={3}>
                           <MovieCard
                             movie={movie}
