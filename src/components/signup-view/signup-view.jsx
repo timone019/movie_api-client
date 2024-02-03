@@ -1,14 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  Form,
-  Button,
-  Card,
-  CardGroup,
-  Container,
-  Row,
-  Col,
-} from "react-bootstrap";
+import { Form, Button, Card, CardGroup } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export const SignupView = () => {
   const [fullName, setFullName] = useState("");
@@ -140,6 +134,9 @@ export const SignupView = () => {
                     >
                       Sign Up
                     </Button>
+                  </div>
+                  <div>
+                    <Link to="/login">or Log In</Link>
                   </div>
                 </Form>
               </Card.Body>

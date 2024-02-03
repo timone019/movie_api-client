@@ -1,8 +1,10 @@
 // import './navigation-bar.scss';
-import { Navbar, Container, Nav } from "react-bootstrap";
+import { Navbar, Container, Nav, Form } from "react-bootstrap";
 import { Link, useNavigate, } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useOnclickOutside from "react-cool-onclickoutside";
+import { Sun, Moon } from "react-bootstrap-icons";
+import './navigation-bar.scss';
 
 export const NavigationBar = ({ user, onLoggedOut }) => {
 const gonavigate = useNavigate();
@@ -11,6 +13,24 @@ const [expanded, setExpanded] = useState(false);
 const ref = useOnclickOutside(() => {
   setExpanded(false);
 });
+
+   // Load the initial theme from localStorage or default to 'light'
+const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+
+  // Use an effect to update localStorage whenever the theme changes
+  useEffect(() => {
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  // Function to toggle the theme
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+  };
+
+  // Add the theme as a class to the body
+  useEffect(() => {
+    document.body.className = theme;
+  }, [theme]);
 
 const navigateBack = () => {
   try {
@@ -36,6 +56,15 @@ const logoutAndNavigate = () => {
         <Navbar.Brand as={Link} to="/">
           <h3>Movies App</h3>
         </Navbar.Brand>
+        
+        <Form.Check 
+          type="switch"
+          id="custom-switch"
+          label={theme === 'light' ? <Sun /> : <Moon />}
+          checked={theme === 'dark'}
+          onChange={toggleTheme}
+        />
+        
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">

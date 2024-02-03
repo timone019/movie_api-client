@@ -1,3 +1,11 @@
-// .w-100 {
-//     width: 100% !important;
-//   }
+body.light {
+    /* Light theme styles */
+    background-color: cadetblue;
+    color: black;
+  }
+  
+  body.dark {
+    /* Dark theme styles */
+    background-color: black;
+    color: white;
+  }

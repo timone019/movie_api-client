@@ -1,15 +1,7 @@
 import { useState } from "react";
-import Proptypes from "prop-types";
-import {
-  Form,
-  Button,
-  Card,
-  CardGroup,
-  Container,
-  Row,
-  Col,
-} from "react-bootstrap";
-
+import { Link } from "react-router-dom";
+import { Form, Button, Card, CardGroup } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -89,6 +81,9 @@ export const LoginView = ({ onLoggedIn }) => {
                     >
                       Log In
                     </Button>
+                  </div>
+                  <div>
+                    <Link to="/signup">or Sign Up</Link>
                   </div>
                 </Form>
               </Card.Body>

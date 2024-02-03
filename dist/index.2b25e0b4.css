@@ -13254,6 +13254,16 @@ textarea.form-control-lg {
   cursor: pointer;
 }
 
+body.light {
+  color: #000;
+  background-color: #5f9ea0;
+}
+
+body.dark {
+  color: #fff;
+  background-color: #000;
+}
+
 .main-content {
   margin-top: 5rem;
 }
