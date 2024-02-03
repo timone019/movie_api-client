@@ -142,9 +142,11 @@ export const MovieView = ({
   );
 };
 MovieView.propTypes = {
-  // token: PropTypes.string.isRequired,
+  user: PropTypes.shape({
+    FavoriteMovies: PropTypes.arrayOf(PropTypes.string).isRequired,
+  }).isRequired,
   addFav: PropTypes.func.isRequired,
   removeFav: PropTypes.func.isRequired,
-  // isFav: PropTypes.bool.isRequired,
+  favMovies: PropTypes.arrayOf(PropTypes.string).isRequired,
   moviedata: PropTypes.array.isRequired,
 };

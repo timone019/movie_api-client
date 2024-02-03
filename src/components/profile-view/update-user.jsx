@@ -10,13 +10,6 @@ const UpdateUser = ({ user, setUser }) => {
     Email: user.Email,
     Birthday: user.Birthday,
   });
-  // const [username, setUsername] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [birthday, setBirthday] = useState("");
-  // const [deletedUser, setDeletedUser] = useState({
-  //   Passowrd: "",
-  // });
 
   let date = new Date(user.Birthday);
   let formattedDate = date.toISOString().substring(0, 10);
