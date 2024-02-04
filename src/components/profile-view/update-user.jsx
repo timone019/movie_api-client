@@ -133,11 +133,11 @@ const UpdateUser = ({ user, setUser }) => {
           <Form.Control
             type="password"
             name="Password"
-            defaultValue=""
+            defaultValue="user.Password"
             onChange={(e) => handleUpdate(e)}
             required
             minLength="8"
-            placeholder="Enter your password"
+            placeholder="Enter current password or newly desired password"
           />
         </Form.Group>
 

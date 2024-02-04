@@ -1,14 +1,14 @@
 import "./movie-card.scss";
 import PropTypes from "prop-types";
-import { Card, } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Heart, HeartFill } from "react-bootstrap-icons";
 
 export const MovieCard = ({ movie, addFav, removeFav, isFav }) => {
   return (
     <Card className="h-100">
-       <Link to={`/moviedata/${movie.Title}`}>
-      <Card.Img variant="top" src={movie.ImagePath} />
+      <Link to={`/moviedata/${movie.Title}`}>
+        <Card.Img variant="top" src={movie.ImagePath} />
       </Link>
       <Card.Body>
         <div className="fav-icon">
@@ -32,7 +32,11 @@ export const MovieCard = ({ movie, addFav, removeFav, isFav }) => {
         <Card.Title>{movie.Year}</Card.Title>
       </Card.Body>
       <Card.Footer>
-        <Link to={`/moviedata/${movie.Title}`} className="open-button">
+        <Link 
+        to={`/moviedata/${movie.Title}`} 
+        className="open-button"
+        onClick={() => window.scrollTo(0, 0)}
+        >
           Open
         </Link>
       </Card.Footer>

@@ -132,10 +132,6 @@ export const MovieView = ({
               ))}
             </Row>
           </Container>
-          {/* <br />
-          <Link to={"/"} className="back-button">
-            Home
-          </Link> */}
         </div>
       )}
     </>
