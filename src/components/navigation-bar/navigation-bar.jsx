@@ -60,9 +60,10 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
       expanded={expanded}
       onToggle={setExpanded}
       onClick={() => window.scrollTo(0, 0)}
+      className="custom-navbar"
     >
       <Container>
-        <Navbar.Brand as={Link} to="/">
+        <Navbar.Brand as={Link} to="/" className="custom-navbar-brand">
           <h3>Movies App</h3>
         </Navbar.Brand>
 
@@ -74,7 +75,7 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
           onChange={toggleTheme}
         />
 
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle aria-controls="basic-navbar-nav" className="custom-navToggle"/>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto" onClick={() => setExpanded(false)}>
             {!user && (

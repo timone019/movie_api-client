@@ -1,5 +1,5 @@
 .card {
-  margin-top: 10px;  
+  margin-top: 10px;
 }
 .open-button {
   padding: 4px 12px 4px 12px;
@@ -8,13 +8,20 @@
   border: none;
   border-radius: 4px;
   text-decoration: none;
-  
+
+  &:hover {
+    background-color: lightgray; /* Change the background color */
+    transition: background-color 0.3s ease; /* Smooth transition */
+  }
 
   @media screen and (min-width: 768px) and (max-width: 991px) {
     padding: 2px 6px 2px 6px;
   }
 }
 
-.fav-icon:hover {
-  cursor: pointer;
+.movie-cover:hover {
+  transform: scale(1.1); /* Increase the size by 10% */
+  transition: transform 0.3s ease; /* Smooth transition */
 }
+
+

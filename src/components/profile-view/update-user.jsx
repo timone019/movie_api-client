@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Form, Button, ButtonGroup, ButtonToolbar } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import "./update-user.scss";
 
 const UpdateUser = ({ user, setUser }) => {
   const [updatedUser, setUpdatedUser] = useState({
@@ -81,10 +82,10 @@ const UpdateUser = ({ user, setUser }) => {
 
       if (response.status === 200) {
         window.alert("Profile deleted successfully");
-        localStorage.removeItem("user"); 
-        localStorage.removeItem("token"); 
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
         setUser(null); // Clear the user data from the state
-        navigate("/login"); 
+        navigate("/login");
       } else {
         console.error("failed to delete profile:", response.statusText);
         window.alert("Profile not Deleted");
@@ -176,7 +177,7 @@ const UpdateUser = ({ user, setUser }) => {
 
         <ButtonToolbar aria-label="Toolbar with button groups" className="mt-3">
           <ButtonGroup className="me-5" aria-label="Update Profile group">
-            <Button variant="primary" type="submit">
+            <Button variant="primary" type="submit" className="update-button">
               Update Profile
             </Button>
           </ButtonGroup>

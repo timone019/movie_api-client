@@ -13210,6 +13210,15 @@ textarea.form-control-lg {
   }
 }
 
+.login-button {
+  margin-top: 1rem;
+}
+
+.login-button:hover, .signup-link:hover {
+  opacity: .5;
+  transition: opacity .3s;
+}
+
 .card {
   margin-top: 10px;
 }
@@ -13223,14 +13232,20 @@ textarea.form-control-lg {
   text-decoration: none;
 }
 
+.open-button:hover {
+  background-color: #d3d3d3;
+  transition: background-color .3s;
+}
+
 @media screen and (width >= 768px) and (width <= 991px) {
   .open-button {
     padding: 2px 6px;
   }
 }
 
-.fav-icon:hover {
-  cursor: pointer;
+.movie-cover:hover {
+  transition: transform .3s;
+  transform: scale(1.1);
 }
 
 .w-100 {
@@ -13254,6 +13269,11 @@ textarea.form-control-lg {
   cursor: pointer;
 }
 
+.update-button:hover {
+  opacity: .7;
+  transition: opacity .3s;
+}
+
 body.light {
   color: #000;
   background-color: #5f9ea0;
@@ -13262,6 +13282,31 @@ body.light {
 body.dark {
   color: #fff;
   background-color: #000;
+}
+
+.custom-navbar-brand:hover {
+  transition: color .5s;
+  color: gray !important;
+}
+
+.nav-link {
+  border-radius: 10px;
+}
+
+.nav-link:hover {
+  background-color: #d3d3d3;
+  transition: background-color .3s;
+}
+
+.custom-navbar:hover {
+  color: #d3d3d3 !important;
+  transition: color .5s !important;
+}
+
+.custom-navToggle:hover {
+  color: #d3d3d3 !important;
+  background-color: #d3d3d3 !important;
+  transition: background-color .5s !important;
 }
 
 .main-content {

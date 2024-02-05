@@ -9,3 +9,29 @@ body.light {
     background-color: black;
     color: white;
   }
+
+  .custom-navbar-brand:hover {
+    color: gray !important;/* Change the color when hovered */
+    transition: color 0.5s ease; /* Smooth transition */
+  }
+
+  .nav-link {
+    border-radius: 10px; /* Add rounded borders */
+  }
+  
+  .nav-link:hover {
+    background-color: lightgray; /* Change the background color */
+    transition: background-color 0.3s ease; /* Smooth transition */
+  }
+
+  .custom-navbar:hover {
+    color: lightgray !important;/* Change the color when hovered */
+    transition: color 0.5s ease !important; /* Smooth transition */
+  }
+
+  .custom-navToggle:hover {
+    color: lightgray !important;
+    background-color: lightgray !important; // Add this if you want to change the background color
+    transition: color 0.5s ease !important;
+    transition: background-color 0.5s ease !important; // Add this if you want to change the background color
+  }

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Form, Button, Card, CardGroup } from "react-bootstrap";
 import { Container, Row, Col } from "react-bootstrap";
+import "./login-view.scss";
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -77,7 +78,7 @@ export const LoginView = ({ onLoggedIn }) => {
 
                   <div>
                     <Button
-                      className="login-button mt-3"
+                      className="login-button"
                       variant="primary"
                       type="submit"
                     >
@@ -85,7 +86,10 @@ export const LoginView = ({ onLoggedIn }) => {
                     </Button>
                   </div>
                   <div>
-                    <Link to="/signup">or Sign Up</Link>
+                    <Link 
+                    to="/signup"
+                    className="signup-link"
+                    >or Sign Up</Link>
                   </div>
                 </Form>
               </Card.Body>

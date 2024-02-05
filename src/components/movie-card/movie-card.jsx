@@ -7,25 +7,40 @@ import { Heart, HeartFill } from "react-bootstrap-icons";
 export const MovieCard = ({ movie, addFav, removeFav, isFav }) => {
   return (
     <Card className="h-100">
-      <Link 
-      to={`/moviedata/${movie.Title}`}
-      >
-        <Card.Img variant="top" src={movie.ImagePath} />
+      <Link to={`/moviedata/${movie.Title}`}>
+        <Card.Img 
+        variant="top" 
+        src={movie.ImagePath}
+        id="movie-cover" 
+        className="movie-cover"
+        />
       </Link>
       <Card.Body>
-        <div className="fav-icon">
+        <div className="fav-icon"
+          style={{
+            display: 'inline-flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderRadius: '50%',
+            overflow: 'hidden', // Ensure the borderRadius applies to the background color
+            padding: '5px',
+            cursor: 'pointer'
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'white')}
+          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
+        >
           {isFav ? (
             <HeartFill
               size={20}
               color="red"
-              className="fav-button mt-2 me-2 top-0 end-0"
+              // className="fav-button mt-2 me-2 top-0 end-0"
               onClick={() => removeFav(movie._id)}
             />
           ) : (
             <Heart
               size={20}
               color="red"
-              className="fav-button mt-2 me-2 top-0 end-0"
+              // className="fav-button mt-2 me-2 top-0 end-0"
               onClick={() => addFav(movie._id)}
             />
           )}
@@ -34,10 +49,7 @@ export const MovieCard = ({ movie, addFav, removeFav, isFav }) => {
         <Card.Title>{movie.Year}</Card.Title>
       </Card.Body>
       <Card.Footer>
-        <Link 
-        to={`/moviedata/${movie.Title}`} 
-        className="open-button"
-        >
+        <Link to={`/moviedata/${movie.Title}`} className="open-button">
           Open
         </Link>
       </Card.Footer>

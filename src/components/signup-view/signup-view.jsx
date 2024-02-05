@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Form, Button, Card, CardGroup } from "react-bootstrap";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import "./signup-view.scss";
 
 export const SignupView = () => {
   const [fullName, setFullName] = useState("");
@@ -133,7 +134,7 @@ export const SignupView = () => {
 
                   <div>
                     <Button
-                      className="signup-button mt-3"
+                      className="signup-button"
                       variant="primary"
                       type="submit"
                     >
@@ -141,7 +142,10 @@ export const SignupView = () => {
                     </Button>
                   </div>
                   <div>
-                    <Link to="/login">or Log In</Link>
+                    <Link 
+                    to="/login"
+                    className="login-link"
+                    >or Log In</Link>
                   </div>
                 </Form>
               </Card.Body>
