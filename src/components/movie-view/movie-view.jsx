@@ -65,13 +65,25 @@ export const MovieView = ({
                 style={{ maxWidth: "600px" }}
               />
             </div>
-            <div className="fav-icon">
+            <div className="fav-icon"
+            style={{
+              display: 'inline-flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderRadius: '50%',
+              overflow: 'hidden', // Ensure the borderRadius applies to the background color
+              padding: '5px',
+              cursor: 'pointer'
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'white')}
+            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
+            >
               {isFav ? (
                 <HeartFill
                   id="remove-fav-button"
                   size={20}
                   color="red"
-                  className="fav-button mt-2 me-2 top-0 end-0"
+                  // className="fav-button mt-2 me-2 top-0 end-0"
                   onClick={() => handleRemoveFav(movie._id)}
                   aria-label="remove from favorites"
                 />
@@ -80,7 +92,7 @@ export const MovieView = ({
                   id="add-fav-button"
                   size={20}
                   color="red"
-                  className="fav-button mt-2 me-2 top-0 end-0"
+                  // className="fav-button mt-2 me-2 top-0 end-0"
                   onClick={() => handleAddFav(movie._id)}
                   aria-label="add to favorites"
                 />

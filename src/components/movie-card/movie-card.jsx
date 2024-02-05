@@ -33,14 +33,12 @@ export const MovieCard = ({ movie, addFav, removeFav, isFav }) => {
             <HeartFill
               size={20}
               color="red"
-              // className="fav-button mt-2 me-2 top-0 end-0"
               onClick={() => removeFav(movie._id)}
             />
           ) : (
             <Heart
               size={20}
               color="red"
-              // className="fav-button mt-2 me-2 top-0 end-0"
               onClick={() => addFav(movie._id)}
             />
           )}
