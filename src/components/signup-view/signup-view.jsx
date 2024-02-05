@@ -1,14 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  Form,
-  Button,
-  Card,
-  CardGroup,
-  Container,
-  Row,
-  Col,
-} from "react-bootstrap";
+import { Form, Button, Card, CardGroup } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import "./signup-view.scss";
 
 export const SignupView = () => {
   const [fullName, setFullName] = useState("");
@@ -43,7 +38,7 @@ export const SignupView = () => {
       })
       .then(() => {
         alert("Signup successful");
-        navigate('/login'); // Redirect to the login view
+        navigate('/login'); 
       })  
       .catch((error) => {
         console.error(
@@ -66,6 +61,7 @@ export const SignupView = () => {
                     <Form.Label>Full Name:</Form.Label>
                     <Form.Control
                       type="text"
+                      id="fullName"
                       aria-label={fullName}
                       aria-required={true}
                       value={fullName}
@@ -79,6 +75,7 @@ export const SignupView = () => {
                     <Form.Label>Username:</Form.Label>
                     <Form.Control
                       type="text"
+                      id="username"
                       aria-label={username}
                       aria-required={true}
                       value={username}
@@ -96,6 +93,7 @@ export const SignupView = () => {
                     <Form.Control
                       placeholder="Create your Password"
                       type="password"
+                      id="password"
                       aria-label={password}
                       aria-required={true}
                       value={password}
@@ -112,6 +110,7 @@ export const SignupView = () => {
                     <Form.Control
                       placeholder="Enter your Email"
                       type="email"
+                      id="email"
                       aria-label={email}
                       aria-required={true}
                       value={email}
@@ -124,6 +123,7 @@ export const SignupView = () => {
                     <Form.Label>Birthday:</Form.Label>
                     <Form.Control
                       type="date"
+                      id="birthday"
                       aria-label={birthday}
                       aria-required={true}
                       value={birthday}
@@ -134,12 +134,18 @@ export const SignupView = () => {
 
                   <div>
                     <Button
-                      className="signup-button mt-3"
+                      className="signup-button"
                       variant="primary"
                       type="submit"
                     >
                       Sign Up
                     </Button>
+                  </div>
+                  <div>
+                    <Link 
+                    to="/login"
+                    className="login-link"
+                    >or Log In</Link>
                   </div>
                 </Form>
               </Card.Body>

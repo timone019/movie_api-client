@@ -1,15 +1,8 @@
 import { useState } from "react";
-import Proptypes from "prop-types";
-import {
-  Form,
-  Button,
-  Card,
-  CardGroup,
-  Container,
-  Row,
-  Col,
-} from "react-bootstrap";
-
+import { Link } from "react-router-dom";
+import { Form, Button, Card, CardGroup } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
+import "./login-view.scss";
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -59,6 +52,7 @@ export const LoginView = ({ onLoggedIn }) => {
                     <Form.Label>Username:</Form.Label>
                     <Form.Control
                       type="text"
+                      id="username"
                       aria-label="username"
                       aria-required="true"
                       value={username}
@@ -72,6 +66,7 @@ export const LoginView = ({ onLoggedIn }) => {
                     <Form.Label>Password:</Form.Label>
                     <Form.Control
                       type="password"
+                      id="password"
                       aria-label="password"
                       aria-required="true"
                       value={password}
@@ -83,12 +78,18 @@ export const LoginView = ({ onLoggedIn }) => {
 
                   <div>
                     <Button
-                      className="login-button mt-3"
+                      className="login-button"
                       variant="primary"
                       type="submit"
                     >
                       Log In
                     </Button>
+                  </div>
+                  <div>
+                    <Link 
+                    to="/signup"
+                    className="signup-link"
+                    >or Sign Up</Link>
                   </div>
                 </Form>
               </Card.Body>

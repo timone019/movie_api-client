@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Form, Button, ButtonGroup, ButtonToolbar } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import "./update-user.scss";
 
 const UpdateUser = ({ user, setUser }) => {
   const [updatedUser, setUpdatedUser] = useState({
@@ -10,13 +11,6 @@ const UpdateUser = ({ user, setUser }) => {
     Email: user.Email,
     Birthday: user.Birthday,
   });
-  // const [username, setUsername] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [birthday, setBirthday] = useState("");
-  // const [deletedUser, setDeletedUser] = useState({
-  //   Passowrd: "",
-  // });
 
   let date = new Date(user.Birthday);
   let formattedDate = date.toISOString().substring(0, 10);
@@ -75,11 +69,6 @@ const UpdateUser = ({ user, setUser }) => {
     }
 
     const token = localStorage.getItem("token");
-    const password = updatedUser.Password; // Get the password from the form
-    if (!password) {
-      window.alert("Please enter your password to delete your account");
-      return;
-    }
     try {
       const response = await fetch(
         `https://mymovies-8b73c95d0ae4.herokuapp.com/users/${user.Username}`,
@@ -93,10 +82,10 @@ const UpdateUser = ({ user, setUser }) => {
 
       if (response.status === 200) {
         window.alert("Profile deleted successfully");
-        localStorage.removeItem("user"); // Remove the user data from local storage
-        localStorage.removeItem("token"); // Remove the token from local storage
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
         setUser(null); // Clear the user data from the state
-        navigate("/login"); // Redirect to login page
+        navigate("/login");
       } else {
         console.error("failed to delete profile:", response.statusText);
         window.alert("Profile not Deleted");
@@ -109,12 +98,15 @@ const UpdateUser = ({ user, setUser }) => {
 
   return (
     <>
-      <h2>Update User Info</h2>
+      <h2>Edit Profile</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group>
           <Form.Label>FullName:</Form.Label>
           <Form.Control
             type="text"
+            id="fullName"
+            aria-label="Full Name"
+            aria-required={true}
             name="FulName"
             defaultValue={user.FullName}
             onChange={(e) => handleUpdate(e)}
@@ -127,6 +119,8 @@ const UpdateUser = ({ user, setUser }) => {
           <Form.Label>Username:</Form.Label>
           <Form.Control
             type="text"
+            id="username"
+            aria-label={"Username"}
             name="Username"
             defaultValue={user.Username}
             onChange={(e) => handleUpdate(e)}
@@ -139,12 +133,15 @@ const UpdateUser = ({ user, setUser }) => {
           <Form.Label>Password:</Form.Label>
           <Form.Control
             type="password"
+            id="password"
+            aria-label={"Password"}
+            aria-required={true}
             name="Password"
-            defaultValue=""
+            defaultValue="user.Password"
             onChange={(e) => handleUpdate(e)}
             required
             minLength="8"
-            placeholder="Enter your password"
+            placeholder="Enter current password or newly desired password"
           />
         </Form.Group>
 
@@ -152,6 +149,9 @@ const UpdateUser = ({ user, setUser }) => {
           <Form.Label>Email:</Form.Label>
           <Form.Control
             type="email"
+            id="email"
+            aria-label={"Email"}
+            aria-required={true}
             name="Email"
             defaultValue={user.Email}
             onChange={(e) => handleUpdate(e)}
@@ -164,6 +164,9 @@ const UpdateUser = ({ user, setUser }) => {
           <Form.Label>Birthday:</Form.Label>
           <Form.Control
             type="date"
+            id="birthday"
+            aria-label={"Birthday"}
+            aria-required={true}
             name="Birthday"
             placeholder="Enter your birthday"
             defaultValue={formattedDate}
@@ -173,13 +176,13 @@ const UpdateUser = ({ user, setUser }) => {
         </Form.Group>
 
         <ButtonToolbar aria-label="Toolbar with button groups" className="mt-3">
-          <ButtonGroup className="me-5" aria-label="First group">
-            <Button variant="primary" type="submit">
+          <ButtonGroup className="me-5" aria-label="Update Profile group">
+            <Button variant="primary" type="submit" className="update-button">
               Update Profile
             </Button>
           </ButtonGroup>
-          <ButtonGroup aria-label="Second group">
-            <Button variant="danger" type="submit" onClick={handleDeleteSubmit}>
+          <ButtonGroup aria-label="Delete Profile group">
+            <Button variant="danger" type="button" onClick={handleDeleteSubmit}>
               Delete Profile
             </Button>
           </ButtonGroup>
