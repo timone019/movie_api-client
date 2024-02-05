@@ -58,7 +58,7 @@ export const SignupView = () => {
               <Card.Body>
                 <Form onSubmit={handleSubmit}>
                   <Form.Group className="mb-3" controlId="signupformFullName">
-                    <Form.Label>Full Name:</Form.Label>
+                    <Form.Label htmlFor="fullName">Full Name:</Form.Label>
                     <Form.Control
                       type="text"
                       id="fullName"
@@ -72,7 +72,7 @@ export const SignupView = () => {
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="signupformUsername">
-                    <Form.Label>Username:</Form.Label>
+                    <Form.Label htmlFor="username">Username:</Form.Label>
                     <Form.Control
                       type="text"
                       id="username"
@@ -89,7 +89,7 @@ export const SignupView = () => {
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="signupformPassword">
-                    <Form.Label>Password:</Form.Label>
+                    <Form.Label htmlFor="password">Password:</Form.Label>
                     <Form.Control
                       placeholder="Create your Password"
                       type="password"
@@ -106,7 +106,7 @@ export const SignupView = () => {
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="signupformEmail">
-                    <Form.Label>Email:</Form.Label>
+                    <Form.Label htmlFor="email">Email:</Form.Label>
                     <Form.Control
                       placeholder="Enter your Email"
                       type="email"
@@ -120,7 +120,7 @@ export const SignupView = () => {
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="signupformBirthday">
-                    <Form.Label>Birthday:</Form.Label>
+                    <Form.Label htmlFor="birthday">Birthday:</Form.Label>
                     <Form.Control
                       type="date"
                       id="birthday"

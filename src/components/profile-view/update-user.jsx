@@ -101,7 +101,7 @@ const UpdateUser = ({ user, setUser }) => {
       <h2>Edit Profile</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group>
-          <Form.Label>FullName:</Form.Label>
+          <Form.Label htmlFor="fullName">FullName:</Form.Label>
           <Form.Control
             type="text"
             id="fullName"
@@ -116,7 +116,7 @@ const UpdateUser = ({ user, setUser }) => {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label>Username:</Form.Label>
+          <Form.Label htmlFor="username">Username:</Form.Label>
           <Form.Control
             type="text"
             id="username"
@@ -130,7 +130,7 @@ const UpdateUser = ({ user, setUser }) => {
         </Form.Group>
 
         <Form.Group controlId="formPassword">
-          <Form.Label>Password:</Form.Label>
+          <Form.Label htmlFor="password">Password:</Form.Label>
           <Form.Control
             type="password"
             id="password"
@@ -146,7 +146,7 @@ const UpdateUser = ({ user, setUser }) => {
         </Form.Group>
 
         <Form.Group controlId="formEmail">
-          <Form.Label>Email:</Form.Label>
+          <Form.Label htmlFor="email">Email:</Form.Label>
           <Form.Control
             type="email"
             id="email"
@@ -161,7 +161,7 @@ const UpdateUser = ({ user, setUser }) => {
         </Form.Group>
 
         <Form.Group controlId="birthday">
-          <Form.Label>Birthday:</Form.Label>
+          <Form.Label htmlFor="birthday">Birthday:</Form.Label>
           <Form.Control
             type="date"
             id="birthday"

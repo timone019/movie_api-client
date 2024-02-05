@@ -49,7 +49,7 @@ export const LoginView = ({ onLoggedIn }) => {
               <Card.Body>
                 <Form onSubmit={handleSubmit}>
                   <Form.Group controlId="formUsername">
-                    <Form.Label>Username:</Form.Label>
+                    <Form.Label htmlFor="username">Username:</Form.Label>
                     <Form.Control
                       type="text"
                       id="username"
@@ -63,7 +63,7 @@ export const LoginView = ({ onLoggedIn }) => {
                   </Form.Group>
 
                   <Form.Group controlId="formPassword">
-                    <Form.Label>Password:</Form.Label>
+                    <Form.Label htmlFor="password">Password:</Form.Label>
                     <Form.Control
                       type="password"
                       id="password"

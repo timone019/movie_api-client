@@ -42,6 +42,7 @@ My Movie App is a Full Stack App built Via MERN (MongoDB, Express, React, Node) 
 - View Embedded Movie Trailers
 - Responsive Navigation Bar 
 
+## Link to Live Site: https://mustcmovies.netlify.app
 ## Movie-Api Server Side Repository 
 https://github.com/timone019/movie_api.git
 
