@@ -1,7 +1,7 @@
 import "./movie-view.scss";
 import PropTypes from "prop-types";
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
+import { useParams, useLocation } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import { MovieCard } from "../movie-card/movie-card";
 import { Heart, HeartFill } from "react-bootstrap-icons";
@@ -17,17 +17,21 @@ export const MovieView = ({
   const [movie, setMovie] = useState(null);
   const [similarMovies, setSimilarMovies] = useState([]);
   const [isFav, setIsFav] = useState(false);
+  const topRef = useRef(null);
+  const { pathname } = useLocation();
+  
 
   useEffect(() => {
     const movie = moviedata.find((m) => m.Title === urlTitle);
-    setMovie(movie);
 
     if (movie) {
       const similarMovies = moviedata.filter(
         (m) => m.Genre.Name === movie.Genre.Name && m._id !== movie._id
       );
+      setMovie(movie);
       setSimilarMovies(similarMovies);
       setIsFav(user.FavoriteMovies.includes(movie._id));
+      
     }
   }, [urlTitle, moviedata, user]);
 
@@ -41,10 +45,17 @@ export const MovieView = ({
     setIsFav(false);
   };
 
+  useEffect(() => {
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+  }, 300);
+}, [pathname]);
+
   return (
     <>
       {movie && (
         <div>
+          <div ref={topRef} />
           <div style={{ textAlign: "center" }}>
             <div style={{ display: "flex", justifyContent: "center" }}>
               <img
@@ -79,20 +90,35 @@ export const MovieView = ({
             </div>
             <div>
               <span>
-                <h3>{movie.Year} - {movie.Rating} - {movie.Runtime}</h3>
+                <h3>
+                  {movie.Year} - {movie.Rating} - {movie.Runtime}
+                </h3>
               </span>
             </div>
-            <div style={{position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', maxWidth: '600px', margin: '0 auto'}}>
+            <div
+              style={{
+                position: "relative",
+                paddingBottom: "56.25%",
+                height: 0,
+                overflow: "hidden",
+                maxWidth: "600px",
+                margin: "0 auto",
+              }}
+            >
               <span>
                 <iframe
                   src={movie.TrailerPath.replace("watch?v=", "embed/")}
                   title="Movie Trailer"
                   className="trailer-button"
                   allowFullScreen
-                  style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}
-                 
-                >
-                </iframe>
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                  }}
+                ></iframe>
               </span>
             </div>
             <h4>Watch Trailer</h4>
@@ -104,7 +130,7 @@ export const MovieView = ({
               <span>Genre: </span>
               <span>{movie.Genre.Name}</span>
             </div>
-          
+
             <div className="mt-3">
               <p style={{ maxWidth: "800px", margin: "0 auto" }}>
                 <span>{movie.Description}</span>

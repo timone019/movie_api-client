@@ -9,7 +9,7 @@ export const MovieCard = ({ movie, addFav, removeFav, isFav }) => {
     <Card className="h-100">
       <Link 
       to={`/moviedata/${movie.Title}`}
-      onClick={() => window.scrollTo(0, 0)}
+      // onClick={() => window.scrollTo(0, 0)}
       >
         <Card.Img variant="top" src={movie.ImagePath} />
       </Link>
@@ -38,7 +38,7 @@ export const MovieCard = ({ movie, addFav, removeFav, isFav }) => {
         <Link 
         to={`/moviedata/${movie.Title}`} 
         className="open-button"
-        onClick={() => window.scrollTo(0, 0)}
+        // onClick={() => window.scrollTo(0, 0)}
         >
           Open
         </Link>
