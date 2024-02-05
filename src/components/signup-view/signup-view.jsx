@@ -60,6 +60,7 @@ export const SignupView = () => {
                     <Form.Label>Full Name:</Form.Label>
                     <Form.Control
                       type="text"
+                      id="fullName"
                       aria-label={fullName}
                       aria-required={true}
                       value={fullName}
@@ -73,6 +74,7 @@ export const SignupView = () => {
                     <Form.Label>Username:</Form.Label>
                     <Form.Control
                       type="text"
+                      id="username"
                       aria-label={username}
                       aria-required={true}
                       value={username}
@@ -90,6 +92,7 @@ export const SignupView = () => {
                     <Form.Control
                       placeholder="Create your Password"
                       type="password"
+                      id="password"
                       aria-label={password}
                       aria-required={true}
                       value={password}
@@ -106,6 +109,7 @@ export const SignupView = () => {
                     <Form.Control
                       placeholder="Enter your Email"
                       type="email"
+                      id="email"
                       aria-label={email}
                       aria-required={true}
                       value={email}
@@ -118,6 +122,7 @@ export const SignupView = () => {
                     <Form.Label>Birthday:</Form.Label>
                     <Form.Control
                       type="date"
+                      id="birthday"
                       aria-label={birthday}
                       aria-required={true}
                       value={birthday}

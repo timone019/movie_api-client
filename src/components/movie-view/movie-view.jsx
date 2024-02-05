@@ -19,7 +19,6 @@ export const MovieView = ({
   const [isFav, setIsFav] = useState(false);
   const topRef = useRef(null);
   const { pathname } = useLocation();
-  
 
   useEffect(() => {
     const movie = moviedata.find((m) => m.Title === urlTitle);
@@ -31,7 +30,6 @@ export const MovieView = ({
       setMovie(movie);
       setSimilarMovies(similarMovies);
       setIsFav(user.FavoriteMovies.includes(movie._id));
-      
     }
   }, [urlTitle, moviedata, user]);
 
@@ -48,8 +46,8 @@ export const MovieView = ({
   useEffect(() => {
     setTimeout(() => {
       window.scrollTo(0, 0);
-  }, 300);
-}, [pathname]);
+    }, 300);
+  }, [pathname]);
 
   return (
     <>
@@ -60,6 +58,8 @@ export const MovieView = ({
             <div style={{ display: "flex", justifyContent: "center" }}>
               <img
                 className="w-100"
+                id="movie-poster"
+                aria-label="movie-poster"
                 src={movie.ImagePath}
                 alt={movie.Title}
                 style={{ maxWidth: "600px" }}
@@ -68,17 +68,21 @@ export const MovieView = ({
             <div className="fav-icon">
               {isFav ? (
                 <HeartFill
+                  id="remove-fav-button"
                   size={20}
                   color="red"
                   className="fav-button mt-2 me-2 top-0 end-0"
                   onClick={() => handleRemoveFav(movie._id)}
+                  aria-label="remove from favorites"
                 />
               ) : (
                 <Heart
+                  id="add-fav-button"
                   size={20}
                   color="red"
                   className="fav-button mt-2 me-2 top-0 end-0"
                   onClick={() => handleAddFav(movie._id)}
+                  aria-label="add to favorites"
                 />
               )}
             </div>
@@ -109,6 +113,8 @@ export const MovieView = ({
                 <iframe
                   src={movie.TrailerPath.replace("watch?v=", "embed/")}
                   title="Movie Trailer"
+                  id="trailer"
+                  aria-label="trailer"
                   className="trailer-button"
                   allowFullScreen
                   style={{
@@ -132,7 +138,11 @@ export const MovieView = ({
             </div>
 
             <div className="mt-3">
-              <p style={{ maxWidth: "800px", margin: "0 auto" }}>
+              <p 
+              id="movie-description" 
+              aria-label="movie-description"
+              style={{ maxWidth: "800px", margin: "0 auto" }}
+              >
                 <span>{movie.Description}</span>
               </p>
             </div>

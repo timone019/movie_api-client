@@ -51,6 +51,7 @@ export const LoginView = ({ onLoggedIn }) => {
                     <Form.Label>Username:</Form.Label>
                     <Form.Control
                       type="text"
+                      id="username"
                       aria-label="username"
                       aria-required="true"
                       value={username}
@@ -64,6 +65,7 @@ export const LoginView = ({ onLoggedIn }) => {
                     <Form.Label>Password:</Form.Label>
                     <Form.Control
                       type="password"
+                      id="password"
                       aria-label="password"
                       aria-required="true"
                       value={password}

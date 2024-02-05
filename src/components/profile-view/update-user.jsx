@@ -103,6 +103,9 @@ const UpdateUser = ({ user, setUser }) => {
           <Form.Label>FullName:</Form.Label>
           <Form.Control
             type="text"
+            id="fullName"
+            aria-label="Full Name"
+            aria-required={true}
             name="FulName"
             defaultValue={user.FullName}
             onChange={(e) => handleUpdate(e)}
@@ -115,6 +118,8 @@ const UpdateUser = ({ user, setUser }) => {
           <Form.Label>Username:</Form.Label>
           <Form.Control
             type="text"
+            id="username"
+            aria-label={"Username"}
             name="Username"
             defaultValue={user.Username}
             onChange={(e) => handleUpdate(e)}
@@ -127,6 +132,9 @@ const UpdateUser = ({ user, setUser }) => {
           <Form.Label>Password:</Form.Label>
           <Form.Control
             type="password"
+            id="password"
+            aria-label={"Password"}
+            aria-required={true}
             name="Password"
             defaultValue="user.Password"
             onChange={(e) => handleUpdate(e)}
@@ -140,6 +148,9 @@ const UpdateUser = ({ user, setUser }) => {
           <Form.Label>Email:</Form.Label>
           <Form.Control
             type="email"
+            id="email"
+            aria-label={"Email"}
+            aria-required={true}
             name="Email"
             defaultValue={user.Email}
             onChange={(e) => handleUpdate(e)}
@@ -152,6 +163,9 @@ const UpdateUser = ({ user, setUser }) => {
           <Form.Label>Birthday:</Form.Label>
           <Form.Control
             type="date"
+            id="birthday"
+            aria-label={"Birthday"}
+            aria-required={true}
             name="Birthday"
             placeholder="Enter your birthday"
             defaultValue={formattedDate}
@@ -161,12 +175,12 @@ const UpdateUser = ({ user, setUser }) => {
         </Form.Group>
 
         <ButtonToolbar aria-label="Toolbar with button groups" className="mt-3">
-          <ButtonGroup className="me-5" aria-label="First group">
+          <ButtonGroup className="me-5" aria-label="Update Profile group">
             <Button variant="primary" type="submit">
               Update Profile
             </Button>
           </ButtonGroup>
-          <ButtonGroup aria-label="Second group">
+          <ButtonGroup aria-label="Delete Profile group">
             <Button variant="danger" type="button" onClick={handleDeleteSubmit}>
               Delete Profile
             </Button>
