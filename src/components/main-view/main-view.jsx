@@ -202,7 +202,7 @@ export const MainView = () => {
                           />
                           </Col>
                           <Col xs="auto">
-                            <Button variant="info" onClick={() => setSearchTerm("")}>
+                            <Button variant="info" className="clear-button" onClick={() => setSearchTerm("")}>
                             Clear
                           </Button>
                           </Col>
