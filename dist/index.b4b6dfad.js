@@ -27414,7 +27414,7 @@ const MainView = ()=>{
                                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                                                                 xs: "auto",
                                                                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                                                                    variant: "outline-secondary",
+                                                                    variant: "info",
                                                                     onClick: ()=>setSearchTerm(""),
                                                                     children: "Clear"
                                                                 }, void 0, false, {

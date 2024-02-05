@@ -202,7 +202,7 @@ export const MainView = () => {
                           />
                           </Col>
                           <Col xs="auto">
-                            <Button variant="outline-secondary" onClick={() => setSearchTerm("")}>
+                            <Button variant="info" onClick={() => setSearchTerm("")}>
                             Clear
                           </Button>
                           </Col>
