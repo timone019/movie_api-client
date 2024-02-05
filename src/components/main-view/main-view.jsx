@@ -5,11 +5,12 @@ import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { ProfileView } from "../profile-view/profile-view";
 import { useState, useEffect } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Button, Container, Row, Col } from "react-bootstrap";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Navigate, useParams } from "react-router-dom";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { FormControl } from "react-bootstrap";
+
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
@@ -190,6 +191,8 @@ export const MainView = () => {
                     <>
                       <Row className="justify-content-md-center">
                         <Col xs lg="4">
+                          <Row>
+                            <Col>     
                           <FormControl
                             type="text"
                             placeholder="Search"
@@ -197,6 +200,13 @@ export const MainView = () => {
                             value={searchTerm}
                             onChange={handleSearchChange}
                           />
+                          </Col>
+                          <Col xs="auto">
+                            <Button variant="outline-secondary" onClick={() => setSearchTerm("")}>
+                            Clear
+                          </Button>
+                          </Col>
+                          </Row>
                         </Col>
                       </Row>
                       {moviedata
