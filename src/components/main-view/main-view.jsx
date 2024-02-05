@@ -48,9 +48,6 @@ export const MainView = () => {
   };
 
   const removeFav = (movieId) => {
-    // setFavMovies((prevFavMovies) =>
-    //   prevFavMovies.filter((id) => id !== movieId)
-    // );
 
     fetch(
       `https://mymovies-8b73c95d0ae4.herokuapp.com/users/${user.Username}/movies/${movieId}`,
@@ -75,7 +72,6 @@ export const MainView = () => {
       return;
     }
 
-    // Fetch the user's favorite movies
     fetch(
       `https://mymovies-8b73c95d0ae4.herokuapp.com/users/${user.Username}`,
       {

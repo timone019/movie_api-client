@@ -22,7 +22,6 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
     localStorage.setItem("theme", theme);
   }, [theme]);
 
-  // Function to toggle the theme
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   };
@@ -41,11 +40,13 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
   };
 
   const logoutAndNavigate = () => {
-    try {
-      onLoggedOut();
-      gonavigate("/login");
-    } catch (error) {
-      console.error("Logout or navigation failed:", error);
+    if (window.confirm("Are you sure you want to log out?")) {
+      try {
+        onLoggedOut();
+        gonavigate("/login");
+      } catch (error) {
+        console.error("Logout or navigation failed:", error);
+      }
     }
   };
 

@@ -37,7 +37,6 @@ if (!user) {
         <Col xs={12} sm={8}>
           <Card>
             <Card.Body>
-              {/* calling the import from UpdateUser component */}
               <UpdateUser user={user} setUser={setUser} />
             </Card.Body>
           </Card>

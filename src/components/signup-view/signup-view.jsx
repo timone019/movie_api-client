@@ -37,7 +37,7 @@ export const SignupView = () => {
       })
       .then(() => {
         alert("Signup successful");
-        navigate('/login'); // Redirect to the login view
+        navigate('/login'); 
       })  
       .catch((error) => {
         console.error(

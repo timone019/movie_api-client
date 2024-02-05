@@ -68,11 +68,6 @@ const UpdateUser = ({ user, setUser }) => {
     }
 
     const token = localStorage.getItem("token");
-    const password = updatedUser.Password; // Get the password from the form
-    if (!password) {
-      window.alert("Please enter your password to delete your account");
-      return;
-    }
     try {
       const response = await fetch(
         `https://mymovies-8b73c95d0ae4.herokuapp.com/users/${user.Username}`,
@@ -86,10 +81,10 @@ const UpdateUser = ({ user, setUser }) => {
 
       if (response.status === 200) {
         window.alert("Profile deleted successfully");
-        localStorage.removeItem("user"); // Remove the user data from local storage
-        localStorage.removeItem("token"); // Remove the token from local storage
+        localStorage.removeItem("user"); 
+        localStorage.removeItem("token"); 
         setUser(null); // Clear the user data from the state
-        navigate("/login"); // Redirect to login page
+        navigate("/login"); 
       } else {
         console.error("failed to delete profile:", response.statusText);
         window.alert("Profile not Deleted");
@@ -172,7 +167,7 @@ const UpdateUser = ({ user, setUser }) => {
             </Button>
           </ButtonGroup>
           <ButtonGroup aria-label="Second group">
-            <Button variant="danger" type="submit" onClick={handleDeleteSubmit}>
+            <Button variant="danger" type="button" onClick={handleDeleteSubmit}>
               Delete Profile
             </Button>
           </ButtonGroup>
