@@ -12,7 +12,6 @@ export const MovieCard = ({ movie, addFav, removeFav, isFav }) => {
         variant="top" 
         src={movie.ImagePath}
         id="movie-cover" 
-        className="movie-cover"
         />
       </Link>
       <Card.Body>

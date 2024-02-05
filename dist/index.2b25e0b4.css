@@ -13243,11 +13243,6 @@ textarea.form-control-lg {
   }
 }
 
-.movie-cover:hover {
-  transition: transform .3s;
-  transform: scale(1.1);
-}
-
 .w-100 {
   margin-top: 10px;
 }
