@@ -56,7 +56,7 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
       ref={ref}
       bg="info"
       variant="light"
-      expand="sm"
+      expand="md"
       fixed="top"
       expanded={expanded}
       onToggle={setExpanded}
