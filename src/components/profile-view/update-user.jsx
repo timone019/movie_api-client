@@ -110,10 +110,9 @@ const UpdateUser = ({ user, setUser }) => {
       <h2>Edit Profile</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group>
-          <Form.Label htmlFor="fullName">FullName:</Form.Label>
+          <Form.Label>FullName:</Form.Label>
           <Form.Control
             type="text"
-            id="fullName"
             aria-label="Full Name"
             aria-required={true}
             name="FulName"
@@ -125,10 +124,9 @@ const UpdateUser = ({ user, setUser }) => {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor="username">Username:</Form.Label>
+          <Form.Label>Username:</Form.Label>
           <Form.Control
             type="text"
-            id="username"
             aria-label={"Username"}
             name="Username"
             defaultValue={user.Username}
@@ -139,10 +137,9 @@ const UpdateUser = ({ user, setUser }) => {
         </Form.Group>
 
         <Form.Group controlId="formPassword">
-          <Form.Label htmlFor="password">Password:</Form.Label>
+          <Form.Label>Password:</Form.Label>
           <Form.Control
             type="password"
-            id="password"
             aria-label={"Password"}
             aria-required={true}
             name="Password"
@@ -155,10 +152,9 @@ const UpdateUser = ({ user, setUser }) => {
         </Form.Group>
 
         <Form.Group controlId="formEmail">
-          <Form.Label htmlFor="email">Email:</Form.Label>
+          <Form.Label>Email:</Form.Label>
           <Form.Control
             type="email"
-            id="email"
             aria-label={"Email"}
             aria-required={true}
             name="Email"
@@ -170,10 +166,9 @@ const UpdateUser = ({ user, setUser }) => {
         </Form.Group>
 
         <Form.Group controlId="birthday">
-          <Form.Label htmlFor="birthday">Birthday:</Form.Label>
+          <Form.Label>Birthday:</Form.Label>
           <Form.Control
             type="date"
-            id="birthday"
             aria-label={"Birthday"}
             aria-required={true}
             name="Birthday"

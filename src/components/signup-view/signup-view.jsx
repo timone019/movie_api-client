@@ -67,10 +67,9 @@ export const SignupView = () => {
               <Card.Body>
                 <Form onSubmit={handleSubmit}>
                   <Form.Group className="mb-3" controlId="signupformFullName">
-                    <Form.Label htmlFor="fullName">Full Name:</Form.Label>
+                    <Form.Label>Full Name:</Form.Label>
                     <Form.Control
                       type="text"
-                      id="fullName"
                       aria-label={fullName}
                       aria-required={true}
                       value={fullName}
@@ -81,10 +80,9 @@ export const SignupView = () => {
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="signupformUsername">
-                    <Form.Label htmlFor="username">Username:</Form.Label>
+                    <Form.Label>Username:</Form.Label>
                     <Form.Control
                       type="text"
-                      id="username"
                       aria-label={username}
                       aria-required={true}
                       value={username}
@@ -98,11 +96,10 @@ export const SignupView = () => {
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="signupformPassword">
-                    <Form.Label htmlFor="password">Password:</Form.Label>
+                    <Form.Label>Password:</Form.Label>
                     <Form.Control
                       placeholder="Create your Password"
                       type="password"
-                      id="password"
                       aria-label={password}
                       aria-required={true}
                       value={password}
@@ -115,11 +112,10 @@ export const SignupView = () => {
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="signupformEmail">
-                    <Form.Label htmlFor="email">Email:</Form.Label>
+                    <Form.Label>Email:</Form.Label>
                     <Form.Control
                       placeholder="Enter your Email"
                       type="email"
-                      id="email"
                       aria-label={email}
                       aria-required={true}
                       value={email}
@@ -129,10 +125,9 @@ export const SignupView = () => {
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="signupformBirthday">
-                    <Form.Label htmlFor="birthday">Birthday:</Form.Label>
+                    <Form.Label>Birthday:</Form.Label>
                     <Form.Control
                       type="date"
-                      id="birthday"
                       aria-label={birthday}
                       aria-required={true}
                       value={birthday}

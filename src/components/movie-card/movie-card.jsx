@@ -59,9 +59,8 @@ MovieCard.propTypes = {
   movie: PropTypes.shape({
     _id: PropTypes.string.isRequired,
     Title: PropTypes.string.isRequired,
-    Year: PropTypes.string.isRequired,
+    Year: PropTypes.string.isRequired
   }).isRequired,
-  addFav: PropTypes.func.isRequired,
-  removeFav: PropTypes.func.isRequired,
-  isFav: PropTypes.bool.isRequired,
+  handleFavClick: PropTypes.func.isRequired,
+  isFav: PropTypes.bool.isRequired
 };
