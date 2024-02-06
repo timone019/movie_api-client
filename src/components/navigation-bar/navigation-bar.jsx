@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import useOnclickOutside from "react-cool-onclickoutside";
 import { Sun, Moon } from "react-bootstrap-icons";
+import PropTypes from "prop-types";
 import "./navigation-bar.scss";
 
 export const NavigationBar = ({ user, onLoggedOut }) => {
@@ -112,4 +113,9 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
       </Container>
     </Navbar>
   );
+};
+
+NavigationBar.propTypes = {
+  user: PropTypes.object,
+  onLoggedOut: PropTypes.func.isRequired,
 };

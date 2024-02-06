@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Form, Button, Card, CardGroup } from "react-bootstrap";
 import { Container, Row, Col } from "react-bootstrap";
+import PropTypes from "prop-types";
 import "./login-view.scss";
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
@@ -97,4 +98,8 @@ export const LoginView = ({ onLoggedIn }) => {
       </Row>
     </Container>
   );
+};
+
+LoginView.propTypes = {
+  onLoggedIn: PropTypes.func.isRequired,
 };

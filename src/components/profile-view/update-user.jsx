@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Form, Button, ButtonGroup, ButtonToolbar } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 import "./update-user.scss";
 
 const UpdateUser = ({ user, setUser }) => {
@@ -194,6 +195,11 @@ const UpdateUser = ({ user, setUser }) => {
       </Form>
     </>
   );
+};
+
+UpdateUser.propTypes = {
+  user: PropTypes.object.isRequired,
+  setUser: PropTypes.func.isRequired,
 };
 
 export default UpdateUser;

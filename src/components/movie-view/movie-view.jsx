@@ -32,13 +32,19 @@ export const MovieView = ({
       setSimilarMovies(similarMovies);
       setIsFav(user.FavoriteMovies.includes(movie._id));
     }
-  }, [urlTitle, moviedata, user]);
+  }, [urlTitle, moviedata, user, favMovies]); // dependency array
 
   useEffect(() => {
     setTimeout(() => {
       window.scrollTo(0, 0);
     }, 300);
   }, [pathname]);
+
+  useEffect(() => {
+    if (movie) {
+    setIsFav(favMovies.includes(movie._id));
+    }
+  }, [favMovies, movie]);
 
   return (
     <>
@@ -74,11 +80,7 @@ export const MovieView = ({
                   id="remove-fav-button"
                   size={20}
                   color="red"
-                  onClick={() => {
-                  handleFavClick(movie, true)
-                  setIsFav(false);
-                  }}
-
+                  onClick={() => handleFavClick(movie, true)}
                   aria-label="remove from favorites"
                 />
               ) : (
@@ -179,6 +181,7 @@ export const MovieView = ({
     </>
   );
 };
+
 MovieView.propTypes = {
   user: PropTypes.shape({
     FavoriteMovies: PropTypes.arrayOf(PropTypes.string).isRequired,
@@ -187,4 +190,5 @@ MovieView.propTypes = {
   removeFav: PropTypes.func.isRequired,
   favMovies: PropTypes.arrayOf(PropTypes.string).isRequired,
   moviedata: PropTypes.array.isRequired,
+  handleFavClick: PropTypes.func.isRequired
 };
