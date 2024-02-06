@@ -23,6 +23,15 @@ export const SignupView = () => {
       Birthday: birthday,
     };
 
+    // Calculate the age
+  const age = new Date().getFullYear() - new Date(birthday).getFullYear();
+
+  // Check if the age is less than 13
+  if (age < 13) {
+    alert("You must be at least 13 years old to sign up.");
+    return;
+  }
+
     fetch("https://mymovies-8b73c95d0ae4.herokuapp.com/users/register", {
       method: "POST",
       body: JSON.stringify(data),

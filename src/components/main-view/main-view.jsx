@@ -68,6 +68,16 @@ export const MainView = () => {
       .catch((error) => console.error("Error:", error));
   };
 
+  const handleFavClick = (movie, isFav) => {
+    if (isFav) {
+      removeFav(movie._id);
+      window.alert(`${movie.Title} has been removed from your favorite list`);
+    } else {
+      addFav(movie._id);
+      window.alert(`${movie.Title} has been added to your favorite list`);
+    }
+  };
+
   useEffect(() => {
     if (!token) {
       return;
@@ -220,8 +230,7 @@ export const MainView = () => {
                             <MovieCard
                               movie={movie}
                               isFav={favMovies.includes(movie._id)}
-                              addFav={addFav}
-                              removeFav={removeFav}
+                              handleFavClick={handleFavClick}
                             />
                           </Col>
                         ))}
@@ -249,6 +258,7 @@ export const MainView = () => {
                         moviedata={moviedata}
                         user={user}
                         favMovies={favMovies}
+                        handleFavClick={handleFavClick}
                       />
                     </Col>
                   )}
@@ -266,6 +276,7 @@ export const MainView = () => {
                   addFav={addFav}
                   removeFav={removeFav}
                   favMovies={favMovies}
+                  handleFavClick={handleFavClick}
                 />
               }
             />

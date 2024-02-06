@@ -12,6 +12,7 @@ export const MovieView = ({
   removeFav,
   favMovies,
   moviedata,
+  handleFavClick
 }) => {
   const { title: urlTitle } = useParams();
   const [movie, setMovie] = useState(null);
@@ -32,16 +33,6 @@ export const MovieView = ({
       setIsFav(user.FavoriteMovies.includes(movie._id));
     }
   }, [urlTitle, moviedata, user]);
-
-  const handleAddFav = (movieId) => {
-    addFav(movieId);
-    setIsFav(true);
-  };
-
-  const handleRemoveFav = (movieId) => {
-    removeFav(movieId);
-    setIsFav(false);
-  };
 
   useEffect(() => {
     setTimeout(() => {
@@ -83,8 +74,11 @@ export const MovieView = ({
                   id="remove-fav-button"
                   size={20}
                   color="red"
-                  // className="fav-button mt-2 me-2 top-0 end-0"
-                  onClick={() => handleRemoveFav(movie._id)}
+                  onClick={() => {
+                  handleFavClick(movie, true)
+                  setIsFav(false);
+                  }}
+
                   aria-label="remove from favorites"
                 />
               ) : (
@@ -92,8 +86,7 @@ export const MovieView = ({
                   id="add-fav-button"
                   size={20}
                   color="red"
-                  // className="fav-button mt-2 me-2 top-0 end-0"
-                  onClick={() => handleAddFav(movie._id)}
+                  onClick={() => handleFavClick(movie, false)}
                   aria-label="add to favorites"
                 />
               )}
@@ -175,6 +168,7 @@ export const MovieView = ({
                     addFav={addFav}
                     removeFav={removeFav}
                     isFav={favMovies.includes(movie._id)}
+                    handleFavClick={handleFavClick}
                   />
                 </Col>
               ))}

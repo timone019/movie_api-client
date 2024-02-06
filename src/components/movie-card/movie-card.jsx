@@ -4,7 +4,8 @@ import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Heart, HeartFill } from "react-bootstrap-icons";
 
-export const MovieCard = ({ movie, addFav, removeFav, isFav }) => {
+export const MovieCard = ({ movie, isFav, handleFavClick }) => {
+
   return (
     <Card className="h-100">
       <Link to={`/moviedata/${movie.Title}`}>
@@ -32,13 +33,13 @@ export const MovieCard = ({ movie, addFav, removeFav, isFav }) => {
             <HeartFill
               size={20}
               color="red"
-              onClick={() => removeFav(movie._id)}
+              onClick={() => handleFavClick(movie, true)}
             />
           ) : (
             <Heart
               size={20}
               color="red"
-              onClick={() => addFav(movie._id)}
+              onClick={() => handleFavClick(movie, false)}
             />
           )}
         </div>

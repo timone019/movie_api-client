@@ -22,6 +22,15 @@ const UpdateUser = ({ user, setUser }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Calculate the age
+  const age = new Date().getFullYear() - new Date(updatedUser.Birthday).getFullYear();
+
+  // Check if the age is less than 13
+  if (age < 13) {
+    alert("You must be at least 13 years old.");
+    return;
+  }
+
     const confirmUpdate = window.confirm(
       "Are you sure you want to update your profile?"
     );
