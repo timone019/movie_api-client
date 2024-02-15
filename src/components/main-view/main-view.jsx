@@ -71,10 +71,10 @@ export const MainView = () => {
   const handleFavClick = (movie, isFav) => {
     if (isFav) {
       removeFav(movie._id);
-      window.alert(`${movie.Title} has been removed from your favorite list`);
+      window.alert(`${movie.Title} has been removed from your Favorite list`);
     } else {
       addFav(movie._id);
-      window.alert(`${movie.Title} has been added to your favorite list`);
+      window.alert(`${movie.Title} has been added to your Favorite list: go to your Profile to see it`);
     }
   };
 
@@ -247,7 +247,7 @@ export const MainView = () => {
                   {!user ? (
                     <Navigate to="/login" replace />
                   ) : moviedata.length === 0 ? (
-                    <Col></Col>
+                    <Col>Welcome to Must C Movies</Col>
                   ) : (
                     <Col md={8}>
                       <MovieView
