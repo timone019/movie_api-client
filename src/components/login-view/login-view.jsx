@@ -66,23 +66,23 @@ export const LoginView = ({ onLoggedIn }) => {
                         position: "relative",
                       }}
                     >
-                        <Button
-                          variant="info"
-                          className="paste-button"
-                          onClick={async () =>
-                            setUsername(await navigator.clipboard.readText())
-                          }
-                          style={{
-                            position: "absolute",
-                            left: "50%",
-                            top: "50%",
-                            transform: "translate(-50%, -50%)",
-                            padding: "2px 5px",
-                            fontSize: "10px",
-                          }}
-                        >
-                          Paste
-                        </Button>
+                      <Button
+                        variant="secondary"
+                        className="paste-button"
+                        onClick={async () =>
+                          setUsername(await navigator.clipboard.readText())
+                        }
+                        style={{
+                          position: "absolute",
+                          left: "50%",
+                          top: "50%",
+                          transform: "translate(-50%, -50%)",
+                          padding: "2px 5px",
+                          fontSize: "10px",
+                        }}
+                      >
+                        Paste
+                      </Button>
                       <Form.Control
                         type="text"
                         aria-label="username"
@@ -106,35 +106,41 @@ export const LoginView = ({ onLoggedIn }) => {
 
                   <Form.Group controlId="formPassword">
                     <Form.Label>Password:</Form.Label>
-                    <div style={{ display: "flex", alignItems: "center", position: "relative" }}>
-                    <div style={{ position: 'relative', flex: 1 }}>
-                    <Form.Control
-                     type="password"
-                     aria-label="password"
-                     aria-required="true"
-                     value={password}
-                     placeholder="Enter password"
-                     onChange={(e) => setPassword(e.target.value)}
-                     required
-                   />
-                    <Button
-                          variant="info"
-                          className="paste-button"
-                          onClick={async () =>
-                            setPassword(await navigator.clipboard.readText())
-                          }
-                          style={{
-                            position: "absolute",
-                            left: "60%",
-                            top: "50%",
-                            transform: "translate(-50%, -50%)",
-                            padding: "2px 5px",
-                            fontSize: "10px",
-                          }}
-                        >
-                          Paste
-                        </Button>
-                        </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        position: "relative",
+                      }}
+                    >
+                      <Button
+                        variant="secondary"
+                        className="paste-button"
+                        onClick={async () =>
+                          setPassword(await navigator.clipboard.readText())
+                        }
+                        style={{
+                          position: "absolute",
+                          left: "50%",
+                          top: "50%",
+                          transform: "translate(-50%, -50%)",
+                          padding: "2px 5px",
+                          fontSize: "10px",
+                        }}
+                      >
+                        Paste
+                      </Button>
+
+                      <Form.Control
+                        type="password"
+                        aria-label="password"
+                        aria-required="true"
+                        value={password}
+                        placeholder="Enter password"
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                      />
+
                       <Button
                         variant="info"
                         className="clear-button"
