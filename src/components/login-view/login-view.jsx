@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Form, Button, Card, CardGroup } from "react-bootstrap";
 import { Container, Row, Col } from "react-bootstrap";
@@ -7,6 +7,14 @@ import "./login-view.scss";
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const usernameRef = useRef();
+  const passwordRef = useRef();
+
+  const copyToClipboard = (ref) => {
+    const textToCopy = ref.current.innerText.split(": ")[1];
+    navigator.clipboard.writeText(textToCopy);
+  };
 
   const handleSubmit = (event) => {
     // this prevents the default behavior of the form which is to reload the entire page
@@ -51,28 +59,91 @@ export const LoginView = ({ onLoggedIn }) => {
                 <Form onSubmit={handleSubmit}>
                   <Form.Group controlId="formUsername">
                     <Form.Label>Username:</Form.Label>
-                    <Form.Control
-                      type="text"
-                      aria-label="username"
-                      aria-required="true"
-                      value={username}
-                      placeholder="Enter username"
-                      onChange={(e) => setUsername(e.target.value)}
-                      required
-                    />
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        position: "relative",
+                      }}
+                    >
+                        <Button
+                          variant="info"
+                          className="paste-button"
+                          onClick={async () =>
+                            setUsername(await navigator.clipboard.readText())
+                          }
+                          style={{
+                            position: "absolute",
+                            left: "50%",
+                            top: "50%",
+                            transform: "translate(-50%, -50%)",
+                            padding: "2px 5px",
+                            fontSize: "10px",
+                          }}
+                        >
+                          Paste
+                        </Button>
+                      <Form.Control
+                        type="text"
+                        aria-label="username"
+                        aria-required="true"
+                        value={username}
+                        placeholder="Enter username"
+                        onChange={(e) => setUsername(e.target.value)}
+                        required
+                      />
+
+                      <Button
+                        variant="info"
+                        className="clear-button"
+                        onClick={() => setUsername("")}
+                        style={{ marginLeft: "10px" }}
+                      >
+                        Clear
+                      </Button>
+                    </div>
                   </Form.Group>
 
                   <Form.Group controlId="formPassword">
                     <Form.Label>Password:</Form.Label>
+                    <div style={{ display: "flex", alignItems: "center", position: "relative" }}>
+                    <div style={{ position: 'relative', flex: 1 }}>
                     <Form.Control
-                      type="password"
-                      aria-label="password"
-                      aria-required="true"
-                      value={password}
-                      placeholder="Enter password"
-                      onChange={(e) => setPassword(e.target.value)}
-                      required
-                    />
+                     type="password"
+                     aria-label="password"
+                     aria-required="true"
+                     value={password}
+                     placeholder="Enter password"
+                     onChange={(e) => setPassword(e.target.value)}
+                     required
+                   />
+                    <Button
+                          variant="info"
+                          className="paste-button"
+                          onClick={async () =>
+                            setPassword(await navigator.clipboard.readText())
+                          }
+                          style={{
+                            position: "absolute",
+                            left: "60%",
+                            top: "50%",
+                            transform: "translate(-50%, -50%)",
+                            padding: "2px 5px",
+                            fontSize: "10px",
+                          }}
+                        >
+                          Paste
+                        </Button>
+                        </div>
+                      <Button
+                        variant="info"
+                        className="clear-button"
+                        onClick={() => setUsername("")}
+                        style={{ marginLeft: "10px" }}
+                      >
+                        Clear
+                      </Button>
+                    </div>
                   </Form.Group>
 
                   <div>
@@ -85,10 +156,43 @@ export const LoginView = ({ onLoggedIn }) => {
                     </Button>
                   </div>
                   <div>
-                    <Link 
-                    to="/signup"
-                    className="signup-link"
-                    >or Sign Up</Link>
+                    <Link to="/signup" className="signup-link">
+                      or Sign Up
+                    </Link>
+                  </div>
+
+                  <br />
+                  <div>Demo User:</div>
+
+                  <span ref={usernameRef}>
+                    username: <strong>testuser</strong>
+                  </span>
+                  <Button
+                    variant="outline-secondary"
+                    style={{
+                      padding: "2px 5px",
+                      fontSize: "10px",
+                      marginLeft: "10px",
+                    }}
+                    onClick={() => copyToClipboard(usernameRef)}
+                  >
+                    Copy
+                  </Button>
+                  <div>
+                    <span ref={passwordRef}>
+                      password: <strong>password</strong>
+                    </span>
+                    <Button
+                      variant="outline-secondary"
+                      style={{
+                        padding: "2px 5px",
+                        fontSize: "10px",
+                        marginLeft: "10px",
+                      }}
+                      onClick={() => copyToClipboard(passwordRef)}
+                    >
+                      Copy
+                    </Button>
                   </div>
                 </Form>
               </Card.Body>
