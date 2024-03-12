@@ -144,7 +144,7 @@ export const LoginView = ({ onLoggedIn }) => {
                       <Button
                         variant="info"
                         className="clear-button"
-                        onClick={() => setUsername("")}
+                        onClick={() => setPassword("")}
                         style={{ marginLeft: "10px" }}
                       >
                         Clear
