@@ -2,3 +2,25 @@
     opacity: 0.7;
     transition: opacity 0.3s ease;
   }
+
+  @keyframes input6-animation {
+    0% {
+      box-shadow: -2px -2px 8px 1px #aa00ff, 2px 2px 8px 1px #3700ff;
+    }
+    25% {
+      box-shadow: -2px 2px 8px 1px #aa00ff, 2px -2px 8px 1px #3700ff;
+    }
+    50% {
+      box-shadow: 2px 2px 8px 1px #aa00ff, -2px -2px 8px 1px #3700ff;
+    }
+    75% {
+      box-shadow: 2px -2px 8px 1px #aa00ff, -2px 2px 8px 1px #3700ff;
+    }
+    100% {
+      box-shadow: -2px -2px 8px 1px #aa00ff, 2px 2px 8px 1px #3700ff;
+    }
+  }
+  
+  #formFullName:focus, #formUsername:focus, #formPassword:focus, #formEmail:focus, #birthday:focus {
+    animation: input6-animation 2s infinite linear;
+  }

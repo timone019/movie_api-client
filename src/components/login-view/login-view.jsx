@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Form, Button, Card, CardGroup } from "react-bootstrap";
 import { Container, Row, Col } from "react-bootstrap";
@@ -8,13 +8,19 @@ export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const usernameRef = useRef();
-  const passwordRef = useRef();
+  const demoUsername = "testuser";
+  const demoPassword = "password";
 
-  const copyToClipboard = (ref) => {
-    const textToCopy = ref.current.innerText.split(": ")[1];
-    navigator.clipboard.writeText(textToCopy);
+  const handleDemoLogin = (event) => {
+    setUsername(demoUsername);
+    setPassword(demoPassword);
   };
+
+  useEffect(() => {
+    if (username === demoUsername && password === demoPassword) {
+      handleSubmit(new Event('submit'));
+    }
+  }, [username, password]);
 
   const handleSubmit = (event) => {
     // this prevents the default behavior of the form which is to reload the entire page
@@ -66,23 +72,7 @@ export const LoginView = ({ onLoggedIn }) => {
                         position: "relative",
                       }}
                     >
-                      <Button
-                        variant="secondary"
-                        className="paste-button"
-                        onClick={async () =>
-                          setUsername(await navigator.clipboard.readText())
-                        }
-                        style={{
-                          position: "absolute",
-                          left: "50%",
-                          top: "50%",
-                          transform: "translate(-50%, -50%)",
-                          padding: "2px 5px",
-                          fontSize: "10px",
-                        }}
-                      >
-                        Paste
-                      </Button>
+               
                       <Form.Control
                         type="text"
                         aria-label="username"
@@ -113,23 +103,6 @@ export const LoginView = ({ onLoggedIn }) => {
                         position: "relative",
                       }}
                     >
-                      <Button
-                        variant="secondary"
-                        className="paste-button"
-                        onClick={async () =>
-                          setPassword(await navigator.clipboard.readText())
-                        }
-                        style={{
-                          position: "absolute",
-                          left: "50%",
-                          top: "50%",
-                          transform: "translate(-50%, -50%)",
-                          padding: "2px 5px",
-                          fontSize: "10px",
-                        }}
-                      >
-                        Paste
-                      </Button>
 
                       <Form.Control
                         type="password"
@@ -168,11 +141,9 @@ export const LoginView = ({ onLoggedIn }) => {
                   </div>
 
                   <br />
-                  <div>Demo User:</div>
 
-                  <span ref={usernameRef}>
-                    username: <strong>testuser</strong>
-                  </span>
+                  <div>Demo User:</div>
+            
                   <Button
                     variant="outline-secondary"
                     style={{
@@ -180,26 +151,11 @@ export const LoginView = ({ onLoggedIn }) => {
                       fontSize: "10px",
                       marginLeft: "10px",
                     }}
-                    onClick={() => copyToClipboard(usernameRef)}
+                    onClick={handleDemoLogin}
                   >
-                    Copy
+                    Demo Login
                   </Button>
-                  <div>
-                    <span ref={passwordRef}>
-                      password: <strong>password</strong>
-                    </span>
-                    <Button
-                      variant="outline-secondary"
-                      style={{
-                        padding: "2px 5px",
-                        fontSize: "10px",
-                        marginLeft: "10px",
-                      }}
-                      onClick={() => copyToClipboard(passwordRef)}
-                    >
-                      Copy
-                    </Button>
-                  </div>
+
                 </Form>
               </Card.Body>
             </Card>

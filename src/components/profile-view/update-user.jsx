@@ -110,7 +110,7 @@ const UpdateUser = ({ user, setUser }) => {
     <>
       <h2>Edit Profile</h2>
       <Form onSubmit={handleSubmit}>
-        <Form.Group>
+        <Form.Group controlId="formFullName">
           <Form.Label>FullName:</Form.Label>
           <Form.Control
             type="text"
@@ -124,7 +124,7 @@ const UpdateUser = ({ user, setUser }) => {
           />
         </Form.Group>
 
-        <Form.Group>
+        <Form.Group controlId="formUsername">
           <Form.Label>Username:</Form.Label>
           <Form.Control
             type="text"
