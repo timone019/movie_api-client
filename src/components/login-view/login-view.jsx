@@ -125,7 +125,7 @@ export const LoginView = ({ onLoggedIn }) => {
                     </div>
                   </Form.Group>
 
-                  <div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                     <Button
                       className="login-button"
                       variant="primary"
@@ -133,8 +133,6 @@ export const LoginView = ({ onLoggedIn }) => {
                     >
                       Log In
                     </Button>
-                  </div>
-                  <div>
                     <Link to="/signup" className="signup-link">
                       or Sign Up
                     </Link>
