@@ -6,6 +6,7 @@ import useOnclickOutside from "react-cool-onclickoutside";
 import { Sun, Moon } from "react-bootstrap-icons";
 import PropTypes from "prop-types";
 import "./navigation-bar.scss";
+import logo from "../../images/McMoviesLogo.png";
 
 export const NavigationBar = ({ user, onLoggedOut }) => {
   const gonavigate = useNavigate();
@@ -56,7 +57,7 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
       ref={ref}
       bg="info"
       variant="light"
-      expand="md"
+      expand="lg"
       fixed="top"
       expanded={expanded}
       onToggle={setExpanded}
@@ -65,7 +66,10 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
     >
       <Container>
         <Navbar.Brand as={Link} to="/" className="custom-navbar-brand">
-          <h3>Movies App</h3>
+          <div className="brand-container">
+            <img src={logo} alt="logo" className="logo" />
+            <h3 className="logo-text">Must C Movies</h3>
+          </div>
         </Navbar.Brand>
 
         <Form.Check
@@ -76,7 +80,10 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
           onChange={toggleTheme}
         />
 
-        <Navbar.Toggle aria-controls="basic-navbar-nav" className="custom-navToggle"/>
+        <Navbar.Toggle
+          aria-controls="basic-navbar-nav"
+          className="custom-navToggle"
+        />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto" onClick={() => setExpanded(false)}>
             {!user && (

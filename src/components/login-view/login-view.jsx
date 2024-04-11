@@ -145,7 +145,8 @@ export const LoginView = ({ onLoggedIn }) => {
                   <div>Demo User:</div>
             
                   <Button
-                    variant="outline-secondary"
+                    className="demo-button"
+                    variant="primary"
                     style={{
                       padding: "2px 5px",
                       fontSize: "10px",
