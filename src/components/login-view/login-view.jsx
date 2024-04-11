@@ -140,21 +140,15 @@ export const LoginView = ({ onLoggedIn }) => {
                     </Link>
                   </div>
 
-                  <br />
 
-                  <div>Demo User:</div>
             
                   <Button
-                    className="demo-button"
+                    className="login-button"
                     variant="primary"
-                    style={{
-                      padding: "2px 5px",
-                      fontSize: "10px",
-                      marginLeft: "10px",
-                    }}
+                    type="submit"
                     onClick={handleDemoLogin}
                   >
-                    Demo Login
+                    Demo Log In
                   </Button>
 
                 </Form>
