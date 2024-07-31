@@ -36,23 +36,27 @@ export const LoginView = ({ onLoggedIn }) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify({ Username: username, Password: password }),
     })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Login response: ", data);
-        if (data.user) {
-          localStorage.setItem("user", JSON.stringify(data.user));
-          localStorage.setItem("token", data.token);
-          onLoggedIn(data.user, data.token);
-        } else {
-          alert("No such user");
-        }
-      })
-      .catch((e) => {
-        console.log(e);
-        alert("Something went wrong");
-      });
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Login failed');
+      }
+      return response.json();
+    })
+    .then(data => {
+      if (data.user && data.token) {
+        localStorage.setItem("user", JSON.stringify(data.user));
+        localStorage.setItem("token", data.token);
+        onLoggedIn(data.user, data.token);
+      } else {
+        alert("Login failed: No such user");
+      }
+    })
+    .catch(error => {
+      console.error("Login Error:", error);
+      alert("Login failed: " + error.message);
+    });
   };
 
   return (

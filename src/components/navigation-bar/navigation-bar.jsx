@@ -72,6 +72,13 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
           </div>
         </Navbar.Brand>
 
+
+        <Navbar.Toggle
+          aria-controls="basic-navbar-nav"
+          className="custom-navToggle"
+        />
+
+
         <Form.Check
           type="switch"
           id="custom-switch"
@@ -80,12 +87,9 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
           onChange={toggleTheme}
         />
 
-        <Navbar.Toggle
-          aria-controls="basic-navbar-nav"
-          className="custom-navToggle"
-        />
+ 
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto" onClick={() => setExpanded(false)}>
+          <Nav className="ml-auto" onClick={() => setExpanded(false)}>
             {!user && (
               <>
                 <Nav.Link as={Link} to="/login">
