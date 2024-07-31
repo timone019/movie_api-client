@@ -97,16 +97,44 @@ export const MainView = () => {
       .catch((error) => console.error("Error:", error));
   }, [token]);
 
+      // Utility function to handle fetch requests with async/await
+const fetchWithToken = async (url, options = {}) => {
+  try {
+    const response = await fetch(url, {
+      ...options,
+      headers: {
+        ...options.headers,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+
+    if (response.status === 401) {
+      // Token expired or invalid
+      localStorage.clear(); // Clear localStorage
+      window.location.href = '/login'; // Redirect to login
+      throw new Error('Session expired. Please log in again.');
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Fetch Error:", error);
+    throw error; // Rethrow the error if you want to handle it later (e.g., with a .catch() when calling fetchWithToken)
+  }
+};
+
   useEffect(() => {
     if (!token) {
       return;
     }
 
-    fetch("https://mymovies-8b73c95d0ae4.herokuapp.com/movies", {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-      .then((response) => response.json())
-      .then((moviedata) => {
+    const fetchData = async () => {
+      try {
+        const moviedata = await fetchWithToken("https://mymovies-8b73c95d0ae4.herokuapp.com/movies"); // Fetch movies from the API
+    //   headers: { Authorization: `Bearer ${token}` },
+    // })
+    //   .then((response) => response.json())
+      // .then((moviedata) => {
         // match the movies from the database with the movies from the api
         const moviesFromApi = moviedata.map((movie) => {
           return {
@@ -132,7 +160,12 @@ export const MainView = () => {
         });
 
         setMovies(moviesFromApi);
-      });
+      } catch (error) {
+        console.error("Fetch Error:", error);
+      }
+    };
+
+    fetchData();
   }, [token]);
 
   return (
