@@ -62,5 +62,5 @@ https://github.com/timone019/movie_api.git
 
 `npm start`
 
-4. Open the app in your browser: http://localhost:1234
+4. Open the app in your browser: http://localhost:4321
 
