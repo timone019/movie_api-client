@@ -10,6 +10,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Navigate, useParams } from "react-router-dom";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { FormControl } from "react-bootstrap";
+import { API_BASE_URL } from "../../config";
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -31,7 +32,7 @@ export const MainView = () => {
 
     // Make a request to the server to add the movie to the user's favorites
     fetch(
-      `https://move-api-kw8t.onrender.com/users/${user.Username}/movies/${movieId}`,
+      `${API_BASE_URL}/users/${user.Username}/movies/${movieId}`,
       {
         method: "POST",
         headers: {
@@ -51,7 +52,7 @@ export const MainView = () => {
   const removeFav = (movieId) => {
 
     fetch(
-      `https://move-api-kw8t.onrender.com/users/${user.Username}/movies/${movieId}`,
+      `${API_BASE_URL}/users/${user.Username}/movies/${movieId}`,
       {
         method: "DELETE",
         headers: {
@@ -84,7 +85,7 @@ export const MainView = () => {
     }
 
     fetch(
-      `https://move-api-kw8t.onrender.com/${user.Username}`,
+      `${API_BASE_URL}/users/${user.Username}`,
       {
         headers: { Authorization: `Bearer ${token}` },
       }
@@ -130,7 +131,7 @@ const fetchWithToken = async (url, options = {}) => {
 
     const fetchData = async () => {
       try {
-        const moviedata = await fetchWithToken("https://move-api-kw8t.onrender.com/movies"); // Fetch movies from the API
+        const moviedata = await fetchWithToken(`${API_BASE_URL}/movies`); // Fetch movies from the API
     //   headers: { Authorization: `Bearer ${token}` },
     // })
     //   .then((response) => response.json())

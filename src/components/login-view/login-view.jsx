@@ -4,6 +4,7 @@ import { Form, Button, Card, CardGroup } from "react-bootstrap";
 import { Container, Row, Col } from "react-bootstrap";
 import PropTypes from "prop-types";
 import "./login-view.scss";
+import { API_BASE_URL } from "../../config";
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -31,7 +32,7 @@ export const LoginView = ({ onLoggedIn }) => {
       Password: password,
     };
 
-    fetch("https://move-api-kw8t.onrender.com/login", {
+    fetch(`${API_BASE_URL}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -4,6 +4,7 @@ import { Form, Button, Card, CardGroup } from "react-bootstrap";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./signup-view.scss";
+import { API_BASE_URL } from "../../config";
 
 export const SignupView = () => {
   const [fullName, setFullName] = useState("");
@@ -32,7 +33,7 @@ export const SignupView = () => {
     return;
   }
 
-    fetch("https://move-api-kw8t.onrender.com/users/register", {
+    fetch(`${API_BASE_URL}/users/register`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {

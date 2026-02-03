@@ -3,6 +3,7 @@ import { Form, Button, ButtonGroup, ButtonToolbar } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./update-user.scss";
+import { API_BASE_URL } from "../../config";
 
 const UpdateUser = ({ user, setUser }) => {
   const [updatedUser, setUpdatedUser] = useState({
@@ -42,7 +43,7 @@ const UpdateUser = ({ user, setUser }) => {
     const token = localStorage.getItem("token");
     try {
       const response = await fetch(
-        `https://move-api-kw8t.onrender.com/users/${user.Username}`,
+        `${API_BASE_URL}/users/${user.Username}`,
         {
           method: "PUT",
           headers: {
@@ -81,7 +82,7 @@ const UpdateUser = ({ user, setUser }) => {
     const token = localStorage.getItem("token");
     try {
       const response = await fetch(
-        `https://move-api-kw8t.onrender.com/users/${user.Username}`,
+        `${API_BASE_URL}/users/${user.Username}`,
         {
           method: "Delete",
           headers: {
