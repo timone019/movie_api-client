@@ -51,7 +51,7 @@ export const MainView = () => {
   const removeFav = (movieId) => {
 
     fetch(
-      `https://mymovies-8b73c95d0ae4.herokuapp.com/users/${user.Username}/movies/${movieId}`,
+      `https://move-api-kw8t.onrender.com/users/${user.Username}/movies/${movieId}`,
       {
         method: "DELETE",
         headers: {
@@ -84,7 +84,7 @@ export const MainView = () => {
     }
 
     fetch(
-      `https://mymovies-8b73c95d0ae4.herokuapp.com/users/${user.Username}`,
+      `https://move-api-kw8t.onrender.com/${user.Username}`,
       {
         headers: { Authorization: `Bearer ${token}` },
       }
@@ -130,7 +130,7 @@ const fetchWithToken = async (url, options = {}) => {
 
     const fetchData = async () => {
       try {
-        const moviedata = await fetchWithToken("https://mymovies-8b73c95d0ae4.herokuapp.com/movies"); // Fetch movies from the API
+        const moviedata = await fetchWithToken("https://move-api-kw8t.onrender.com/movies"); // Fetch movies from the API
     //   headers: { Authorization: `Bearer ${token}` },
     // })
     //   .then((response) => response.json())

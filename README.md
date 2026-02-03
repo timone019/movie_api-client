@@ -13,7 +13,7 @@ My Movie App is a Full Stack App built Via MERN (MongoDB, Express, React, Node) 
     - Prop Types
     - React Cool On Click Outside
 
-- Backend: Deployed via Heroku
+- Backend: Deployed via Render
     - Mongoose (ODM - Object Data Modeling)
     - Body Parser
     - Lodash

@@ -81,7 +81,7 @@ const UpdateUser = ({ user, setUser }) => {
     const token = localStorage.getItem("token");
     try {
       const response = await fetch(
-        `https://mymovies-8b73c95d0ae4.herokuapp.com/users/${user.Username}`,
+        `https://move-api-kw8t.onrender.com/users/${user.Username}`,
         {
           method: "Delete",
           headers: {
