@@ -31,7 +31,7 @@ export const MainView = () => {
 
     // Make a request to the server to add the movie to the user's favorites
     fetch(
-      `https://mymovies-8b73c95d0ae4.herokuapp.com/users/${user.Username}/movies/${movieId}`,
+      `https://move-api-kw8t.onrender.com/users/${user.Username}/movies/${movieId}`,
       {
         method: "POST",
         headers: {

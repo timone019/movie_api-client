@@ -32,7 +32,7 @@ export const SignupView = () => {
     return;
   }
 
-    fetch("https://mymovies-8b73c95d0ae4.herokuapp.com/users/register", {
+    fetch("https://move-api-kw8t.onrender.com/users/register", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
